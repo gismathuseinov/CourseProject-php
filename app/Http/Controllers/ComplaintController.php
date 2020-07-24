@@ -10,21 +10,9 @@ use Illuminate\Support\Facades\DB;
 
 class ComplaintController extends Controller
 {
-   public function write(Complaint $request){
-
-      // Comments::create($request->validated());
-
-   //    Comments::create([
-   //       'email' => "auye@mail.ru"
-   //    ]);
-
-   //    return response()
-   //    ->json(['status'=>'success','message'=>'24 saat ərzində şikayətinizə baxılacaq']);
-   // }
-
-   public function _write(Complaint $request){
+    public function write(Complaint $request){
         $id = Auth::id();
-      //   $validated = $request->validated();
+        $validated = $request->validated();
 
         $compname = $request->compname;// $validated['compname']
         $email = $request->email;
@@ -41,7 +29,7 @@ class ComplaintController extends Controller
         $add->company_name=$company_name;
         $add->commenttitle=$commenttitle;
         $add->comment=$comment;
-        $add->compphoto=$img_name; 
+        $add->compphoto=$img_name;
         $add->is_send=$send;
         $add->save();
 
