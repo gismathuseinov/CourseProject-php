@@ -18,9 +18,8 @@ class CreateCommentsTable extends Migration
             $table->integer('user_id');
             $table->string('email');
             $table->string('company_name');
-            $table->string('commenttitle');
-            $table->string('comment',10000);
-            $table->string('compphoto');
+            $table->string('complaint_title');
+            $table->string('complaint_body',10000);
             $table->integer('is_letted')->default(0);
             $table->integer('is_send')->default(0);
             $table->timestamps();

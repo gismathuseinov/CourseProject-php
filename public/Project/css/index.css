@@ -134,7 +134,8 @@ body {
 }
 
 .ifade {
-    height: 500px;
+    /*margin-top: -80px;*/
+    height: 600px;
     display: flex;
     flex-direction: row;
     align-items: center;

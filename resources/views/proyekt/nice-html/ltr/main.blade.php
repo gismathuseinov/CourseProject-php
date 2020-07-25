@@ -51,7 +51,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-brand">
-                    <a href="admin" class="logo">
+                    <a href="{{route('admin.dashboard')}}" class="logo">
                         <!-- Logo icon -->
                         <b class="logo-icon">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -128,31 +128,31 @@
             <nav class="sidebar-nav">
                 <ul id="sidebarnav">
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="../../index"
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('site.index')}}"
                            aria-expanded="false">
                             <i class="mdi mdi-web"></i>
                             <span class="hide-menu">Sayt</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="admintable"
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.dashboard')}}"
+                           aria-expanded="false">
+                            <i class="mdi-view-dashboard"></i>
+                            <span class="hide-menu">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.issue')}}"
                            aria-expanded="false">
                             <i class="mdi mdi-border-none"></i>
                             <span class="hide-menu">Şikayətlər</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="adminmessage"
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('admin.message')}}"
                            aria-expanded="false">
                             <i class="mdi mdi-message"></i>
                             <span class="hide-menu">Mesajlar</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="adminerror"
-                           aria-expanded="false">
-                            <i class="mdi mdi-alert-outline"></i>
-                            <span class="hide-menu">404</span>
                         </a>
                     </li>
                 </ul>

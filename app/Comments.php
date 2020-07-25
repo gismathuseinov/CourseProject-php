@@ -7,23 +7,10 @@ use App\User;
 
 class Comments extends Model
 {
+    protected $fillable = ['user_id','email','company_name','complaint_title','complaint_body'];
 
-    public $table = "comments";
-
-    // public $timestamps = false; //bu zaten sondurmurdu?Mene sondurmek yo yaratmagi deyirdim
-
-    // public $image;
-
-    // public static function boot() {
-        
-    //     self::creating(function($model){
-    //         dd("OK");
-    //     });
-    //     parent::boot();
-    // }
-    
-    public function user(){ 
-
-        return $this->hasOne(User::class, 'id', 'user_id');
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

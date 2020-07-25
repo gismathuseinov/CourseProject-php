@@ -47,7 +47,7 @@
             </div>
 
             <div class="col-xs-6 col-md-3">
-               
+
             </div>
 
             <div class="col-xs-6 col-md-3">
@@ -86,9 +86,9 @@
         $('header .header').append(`
          <a href="index"><img src="{{asset('Project/img/logo2.png')}}" alt=""></a>
         <ul style="display:flex;flex-direction: row;">
-            <li><a href="/index" class="menu">Ana səhifə</a></li>
-            <li><a href="/about" class="menu">Haqqımızda</a></li>
-            <li><a href="/contact" class="menu">Əlaqə</a></li>
+            <li><a href="{{route('site.index')}}" class="menu">Ana səhifə</a></li>
+            <li><a href="{{route('about')}}" class="menu">Haqqımızda</a></li>
+            <li><a href="{{route('contact')}}" class="menu">Əlaqə</a></li>
             <li>
                 <div class="dropdown" >
                     <button class="btn-lg btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -96,11 +96,11 @@
                         &nbsp;&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
                     </button>
                 <div class="dropdown-menu drpdwn" aria-labelledby="dropdownMenu2">
-                        <a class="dropdown-item btn btn-primary " href="/logout">Çıxış</a>
+                        <a class="dropdown-item btn btn-primary " href={{route('logout')}}">Çıxış</a>
                     @if (\Illuminate\Support\Facades\Auth::id()==1)
-                        <a class="dropdown-item btn btn-primary " href="/admin">Admin panel</a>
+                        <a class="dropdown-item btn btn-primary " href={{route('admin.dashboard')}}>Admin panel</a>
                     @endif
-                
+
             </div>
         </div>
             </li>
@@ -110,9 +110,9 @@
         $('header .header').append(`
          <a href="index"><img src="{{asset('Project/img/logo2.png')}}" alt=""></a>
         <ul>
-            <li><a href="/index" class="menu">Ana səhifə</a></li>
-            <li><a href="/about" class="menu">Haqqımızda</a></li>
-            <li><a href="/contact" class="menu">Əlaqə</a></li>
+            <li><a href="{{route('site.index')}}" class="menu">Ana səhifə</a></li>
+            <li><a href="{{route('about')}}" class="menu">Haqqımızda</a></li>
+            <li><a href="{{route('site.contact')}}" class="menu">Əlaqə</a></li>
             <li><a class="button" href="/login"  rel="nofollow noopener">Giriş</a></li>
             <li><a class="button" href="/register"  rel="nofollow noopener">Qedyiyyat</a></li>
         </ul>`)

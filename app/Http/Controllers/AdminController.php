@@ -7,18 +7,18 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function admin(){
+    public function dashboard(){
         return view('proyekt.nice-html.ltr.index');
     }
 
-    public function admintable(){
+    public function issue(){
         $base = DB::table('comments')
             ->where('is_letted','=','0')
             ->leftJoin('users','comments.user_id','=','users.id')
             ->select('comments.commenttitle','users.name','comments.comment','comments.id','comments.company_name','comments.email','comments.is_send')
             ->paginate(4);
 
-        return view('proyekt.nice-html.ltr.form-basic',[
+        return view('proyekt.nice-html.ltr.issue',[
             'base'=>$base
         ]);
     }
@@ -28,7 +28,7 @@ class AdminController extends Controller
     public function adminstart(){
         return view('proyekt.nice-html.ltr.starter-kit');
     }
-    public function adminmessage(Request $request){
+    public function message(Request $request){
         $id=$request->id;
         $data = DB::table('feedback')
             ->where('id','=',$id)
@@ -40,7 +40,7 @@ class AdminController extends Controller
             ->select('users.name','feedback.email','feedback.message_title','feedback.feedback',
                 'feedback.id')
             ->get();
-        return view('proyekt.nice-html.ltr.table-basic',[
+        return view('proyekt.nice-html.ltr.message',[
             'feedback'=>$feedback,
             'data'=>$data,
         ]);

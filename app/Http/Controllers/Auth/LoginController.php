@@ -31,7 +31,7 @@ class LoginController extends Controller
       protected function redirectTo()
       {
           if(Auth::user()->id == 1){
-              return 'admin';
+              return 'admin/dashboard';
           }
           else{
               return 'index';

@@ -19,11 +19,11 @@ class IndexController extends Controller
 
     public function index(Request $request)
     {
- 
+
         // $user = DB::select('SELECT COUNT(id) as say FROM users');
 
         $userCount = User::count();
-        
+
         // $sikayet = DB::select('SELECT COUNT(id) as sikayetsay FROM comments WHERE is_letted=1');
         $issueCount = Comments::where('is_letted', 1)->count();
 
@@ -54,7 +54,7 @@ class IndexController extends Controller
         return view('proyekt.contactus');
     }
 
-    public function sikayet()
+    public function complaint()
     {
         $comment = DB::table('comments')
             ->where('is_letted', '=', 1)

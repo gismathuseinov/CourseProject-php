@@ -1,6 +1,7 @@
 
 @extends('proyekt.main')
 @section('main')
+{{--    <br><br><br>--}}
     <div class="container ifade col-12">
         <div class="col-6 search">
             <div class="text">
@@ -17,6 +18,7 @@
                 <button class="btn btn-success writecomment">Şikayət et</button>
             </div>
         </div>
+        <br>
         <div class="col-6 yazi">
             <div style="position: relative;">
                 <img width="100%" height="300px" src="{{ asset('Project/img/bg.png') }}" alt=""
@@ -65,7 +67,7 @@
             {{$comments->links()}}
         </div>
     </div>
-    <br><br><br>  
+    <br><br><br>
     <div class="container-fluid common">
         <div class="section">
             <div class="image"><img src="{{ asset('Project/img/newcomp.png') }}" alt=""></div>
