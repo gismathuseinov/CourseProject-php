@@ -44,7 +44,6 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Ad</th>
                                         <th>Mail</th>
                                         <th>Şirkət</th>
                                         <th>Şikayət başlığı</th>
@@ -57,13 +56,12 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($base as $key => $value)
+                                    @foreach($comments as $key => $value)
                                         <tr id="{{$value->id}}">
-                                            <td>{{$value->name}}</td>
                                             <td>{{$value->email}}</td>
                                             <td>{{$value->company_name}}</td>
-                                            <td>{{$value->commenttitle}}</td>
-                                            <td>{{$value->comment}}</td>
+                                            <td>{{$value->complaint_title}}</td>
+                                            <td>{{$value->complaint_body}}</td>
                                             <td>{{$value->is_send}}</td>
                                             <td>
                                                 <button class="btn btn-success permission"><i class="fa fa-check"></i>
@@ -92,16 +90,15 @@
             </div>
         </div>
         <div class="pagination">
-            {{$base->links()}}
+            {{$comments->links()}}
         </div>
         <script>
             $('tbody').on('click', '.permission', function () {
                 var tr = $(this).parents('tr');
                 var id = tr.attr('id');
-                console.log(id)
                 $.ajax({
                     type: "POST",
-                    url: "accept",
+                    url: "/accept",
                     data: {
                         'id': id,
                         "_token": "{{ csrf_token() }}",
@@ -122,7 +119,7 @@
                 $(this).parents('tr').remove();
                 $.ajax({
                     type: "POST",
-                    url: "delete",
+                    url: "/delete",
                     data: {
                         'id': id,
                         "_token": "{{ csrf_token() }}",
@@ -135,46 +132,44 @@
 
             $('tbody').on('click', '.edit', function () {
                 id = $(this).parents('tr').attr('id');
-                company_name = $(this).parents('tr').find('td:eq(2)').text();
-                title = $(this).parents('tr').find('td:eq(3)').text();
-                comment = $(this).parents('tr').find('td:eq(4)').text();
-                $(this).parents('tr').find('td:eq(2)').html('<input style="width:100px;" type="text" name="name" value="' + company_name + '">')
-                $(this).parents('tr').find('td:eq(3)').html('<textarea name="title">' + title + '</textarea>')
-                $(this).parents('tr').find('td:eq(4)').html('<textarea cols="30" name="comment">' + comment + '</textarea>')
-                $(this).parents('tr').find('td:eq(5)').html('<button class="btn btn-success save"><i class="fa fa-save"></i></button>')
-                $(this).parents('tr').find('td:eq(6)').html('<button class="btn btn-warning cancel"><i class="fa fa-times"></i></button>')
+                company_name = $(this).parents('tr').find('td:eq(1)').text();
+                complaint_title = $(this).parents('tr').find('td:eq(2)').text();
+                complaint_body = $(this).parents('tr').find('td:eq(3)').text();
+                $(this).parents('tr').find('td:eq(1)').html('<input style="width:100px;" type="text" name="name" value="' + company_name + '">')
+                $(this).parents('tr').find('td:eq(2)').html('<textarea name="title">' + complaint_title + '</textarea>')
+                $(this).parents('tr').find('td:eq(3)').html('<textarea cols="30" name="comment">' + complaint_body + '</textarea>')
+                $(this).parents('tr').find('td:eq(6)').html('<button class="btn btn-success save"><i class="fa fa-save"></i></button><button class="btn btn-warning cancel"><i class="fa fa-times"></i></button>')
                 $('tbody').on('click', '.save', function () {
                     var tr = $(this).parents('tr');
                     var id = $(this).parents('tr').attr('id');
                     var new_company_name = $('input[name=name]').val();
                     var new_title = $('textarea[name=title]').val();
-                    var new_comment = $('textarea[name=comment]').val();
+                    var new_body = $('textarea[name=comment]').val();
+                    console.log(id)
                     $.ajax({
                         type: "POST",
-                        url: "edit",
+                        url: "/edit",
                         data: {
                             'id': id,
-                            'new_company_name': new_company_name,
-                            'new_title': new_title,
-                            'new_comment': new_comment,
+                            'company_name': new_company_name,
+                            'complaint_title': new_title,
+                            'complaint_body': new_body,
                             "_token": "{{ csrf_token() }}",
                         },
                         success: function (response) {
-                            tr.find('td:eq(2)').html(new_company_name);
-                            tr.find('td:eq(3)').text(new_title);
-                            tr.find('td:eq(4)').text(new_comment);
-                            tr.find('td:eq(5)').html('<button class="btn btn-success permission"><i class="fa fa-check"></i></button>')
-                            tr.find('td:eq(6)').html('<button class="btn btn-warning edit"><i class="fa fa-pencil"></i></button>')
+                            tr.find('td:eq(1)').html(new_company_name);
+                            tr.find('td:eq(2)').text(new_title);
+                            tr.find('td:eq(3)').text(new_body);
+                            tr.find('td:eq(6)').html('<button class="btn btn-warning edit"><i class="fa fa-pencil"></i></button>');
                         }
                     })
                 })
                 $('tbody').on('click', '.cancel', function () {
                     var tr = $(this).parents('tr');
-                    $(this).parents('tr').find('td:eq(2)').text(company_name);
-                    $(this).parents('tr').find('td:eq(3)').text(title);
-                    $(this).parents('tr').find('td:eq(4)').text(comment);
-                    $(this).parents('tr').find('td:eq(5)').html(' <button class="btn btn-success permission"><i class="fa fa-check"></i></button>')
-                    $(this).parents('tr').find('td:eq(6)').html('  <button class="btn btn-warning edit"><i class="fa fa-pencil"></i></button>')
+                    $(this).parents('tr').find('td:eq(1 )').text(company_name);
+                    $(this).parents('tr').find('td:eq(2)').text(complaint_title);
+                    $(this).parents('tr').find('td:eq(3)').text(complaint_body);
+                    $(this).parents('tr').find('td:eq(6)').html('<button class="btn btn-warning edit"><i class="fa fa-pencil"></i></button>')
                 })
             });
 
