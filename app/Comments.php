@@ -7,7 +7,7 @@ use App\User;
 
 class Comments extends Model
 {
-    protected $fillable = ['email', 'company_name', 'complaint_title', 'complaint_body','is_letted'];
+    protected $fillable = ['email', 'company_name', 'complaint_title', 'complaint_body', 'is_letted'];
 
     public function user()
     {
