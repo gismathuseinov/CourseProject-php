@@ -49,7 +49,7 @@
             var is_send = $('input[name=is_send]').val();
             $.ajax({
                 type: "POST",
-                url: '/create_post/{user_id}',
+                url: '/create_post',
                 data: {
                     'company_name': company_name,
                     'email': email,
