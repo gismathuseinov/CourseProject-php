@@ -96,7 +96,7 @@
                         &nbsp;&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
                     </button>
                 <div class="dropdown-menu drpdwn" aria-labelledby="dropdownMenu2">
-                        <a class="dropdown-item btn btn-primary " href={{route('logout')}}">Çıxış</a>
+                        <a class="dropdown-item btn btn-primary " href={{route('logout')}}>Çıxış</a>
                     @if (\Illuminate\Support\Facades\Auth::id()==1)
                         <a class="dropdown-item btn btn-primary " href={{route('admin.dashboard')}}>Admin panel</a>
                     @endif
@@ -112,7 +112,7 @@
         <ul>
             <li><a href="{{route('site.index')}}" class="menu">Ana səhifə</a></li>
             <li><a href="{{route('about')}}" class="menu">Haqqımızda</a></li>
-            <li><a href="{{route('site.contact')}}" class="menu">Əlaqə</a></li>
+            <li><a href="{{route('contact')}}" class="menu">Əlaqə</a></li>
             <li><a class="button" href="/login"  rel="nofollow noopener">Giriş</a></li>
             <li><a class="button" href="/register"  rel="nofollow noopener">Qedyiyyat</a></li>
         </ul>`)
