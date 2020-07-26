@@ -15,7 +15,7 @@ class ComplaintController extends Controller
 
         $user = User::find($user->id);
 
-        $user->comments()->create($complaint->validated());
+        $user->posts()->create($complaint->validated());
 
         return response()->json([
             'msg' => 'Şikayətə 24 saat ərzində baxılacaq'

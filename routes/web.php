@@ -26,7 +26,7 @@ Route::post('/send', 'ContactController@send');
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/create_post', 'ComplaintController@create_post');
-    Route::post('/post_comments', 'IndexController@post_comment');
+    Route::post('/create/post/comment', 'IndexController@post_comment');
     Route::post('/check', 'Check@check');
 });
 //admin

@@ -14,4 +14,8 @@ class Complaint extends Model
     {
         return $this->hasOne(User::class,'id','user_id');
     }
+    public function comments()
+    {
+        return $this->hasMany(PostComment::class);
+    }
 }
