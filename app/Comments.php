@@ -7,10 +7,10 @@ use App\User;
 
 class Comments extends Model
 {
-    protected $fillable = ['user_id','email','company_name','complaint_title','complaint_body'];
+    protected $fillable = ['email', 'company_name', 'complaint_title', 'complaint_body','is_letted'];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
     }
 }
