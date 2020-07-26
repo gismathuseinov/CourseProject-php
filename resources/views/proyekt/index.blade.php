@@ -31,13 +31,13 @@
             <i class="fa fa-user fa-5x"></i>
             <div class="span"> Ümumi istifadəçi</div>
             <br>
-            <div class="say">{{$users}}</div>
+            <div class="say">{{$userCount}}</div>
         </div>
         <div class="user comsay">
             <i style="color:#0275d8;" class="fa fa-comments-o fa-5x"></i>
             <div class="span">Ümumi şikayət</div>
             <br>
-            <div class="say">{{$sikayet}}</div>
+            <div class="say">{{$issueCount}}</div>
         </div>
     </div>
 
@@ -53,10 +53,10 @@
                 </div>
                 <hr>
                 <div class="commenttitle">
-                    <h5><a href="{{ route("post.view", ['id' => $comment->id ]) }}">{{$comment->commenttitle}}</a></h5>
+                    <h5><a href="{{ route("post.view", ['id' => $comment->id ]) }}">{{$comment->complaint_title}}</a></h5>
                 </div>
                 <div class="yazi">
-                    <span>{{$comment->comment}}</span>
+                    <span>{{$comment->complaint_body}}</span>
                 </div>
                 <hr>
             </div>

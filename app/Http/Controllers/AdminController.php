@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Comments;
+use App\Complaint;
 use App\Feedback;
 use App\User;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class AdminController extends Controller
 
     public function issue()
     {
-        $comments = Comments::where('is_letted', 0)->paginate(6);
+        $comments = Complaint::where('is_letted', 0)->paginate(6);
 
         return view('proyekt.nice-html.ltr.issue', compact('comments'));
     }

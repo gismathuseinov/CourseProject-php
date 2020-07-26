@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Comments;
+use App\Complaint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,6 +12,6 @@ class Delete extends Controller
     {
         $id = $request->id;
 
-        Comments::where('is_letted', 0)->where('id', $id)->delete();
+        Complaint::where('is_letted', 0)->where('id', $id)->delete();
     }
 }

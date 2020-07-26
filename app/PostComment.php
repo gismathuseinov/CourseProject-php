@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RepylMessage extends Model
+class PostComment extends Model
 {
     //
 }

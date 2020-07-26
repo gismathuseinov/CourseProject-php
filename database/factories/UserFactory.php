@@ -3,7 +3,7 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\User;
-use App\Comments;
+use App\Complaint;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -30,7 +30,7 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(Comments::class, function (Faker $faker) {
+$factory->define(Complaint::class, function (Faker $faker) {
     return [
         'email' => $faker->unique()->safeEmail,
         'company_name' => $faker->company,

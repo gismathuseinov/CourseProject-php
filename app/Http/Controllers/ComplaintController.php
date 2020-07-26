@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Comments;
 use App\User;
 use App\Http\Requests\Complaint;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class ComplaintController extends Controller
 {
