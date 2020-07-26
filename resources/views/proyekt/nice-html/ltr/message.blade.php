@@ -32,7 +32,6 @@
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Ad</th>
                                         <th>Email</th>
                                         <th>Mesaj basligi</th>
                                         <th>MEsaj</th>
@@ -42,10 +41,9 @@
                                     <tbody>
                                     @foreach($feedback as $key => $value)
                                         <tr id="{{$value->id}}">
-                                            <td>{{$value->name}}</td>
-                                            <td>{{$value->message_title}}</td>
                                             <td>{{$value->email}}</td>
-                                            <td>{{$value->feedback}}</td>
+                                            <td>{{$value->message_title}}</td>
+                                            <td>{{$value->message_body}}</td>
                                             <td>
                                                 <button class="btn btn-warning notsee" type="submit"><i
                                                         class="fa fa-eye"></i></button>
@@ -65,14 +63,15 @@
                 var tr = $(this).parents('tr');
                 var id = $(this).parents('tr').attr('id');
                 $.ajax({
-                    url: "adminmessage",
-                    type: "GET",
+                    url: "admin/message",
+                    type: "POST",
                     data: {
                         'id': id,
                         "_token": "{{ csrf_token() }}",
                     },
                     success: function (response) {
-                        tr.find('button').attr('disabled');
+                        tr.find('notsee').remove();
+                        // tr.find('see').add();
                     }
                 })
             })
