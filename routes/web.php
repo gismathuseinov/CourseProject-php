@@ -19,13 +19,15 @@ Route::get('/contact', 'IndexController@contact')->name('contact');
 Route::get('/complaint', 'IndexController@complaint')->name('complaint');
 Route::post('/search', 'IndexController@search');
 Route::get('/sikayet', 'IndexController@sikeytet');
-Route::post('/create_post/{user_id}', 'ComplaintController@create_post');
-Route::post('/send', 'ContactController@send');
 Route::get('/logout', 'Signout@exit')->name('logout');
 Route::get('/post/view/{id}', 'IndexController@post')->name("post.view");
 
-Route::post('/check', 'Check@check')->middleware('auth');
-Route::post('/post_comments', 'IndexController@post_comment')->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::post('/create_post', 'ComplaintController@create_post');
+    Route::post('/post_comments', 'IndexController@post_comment');
+    Route::post('/send', 'ContactController@send');
+    Route::post('/check', 'Check@check');
+});
 //admin
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
