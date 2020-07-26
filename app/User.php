@@ -42,4 +42,5 @@ class User extends Authenticatable
         return $this->hasMany(Comments::class,'user_id','id');
     }
 
+
 }
