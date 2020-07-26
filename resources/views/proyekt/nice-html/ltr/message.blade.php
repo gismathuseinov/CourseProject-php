@@ -46,7 +46,7 @@
                                             <td>{{$value->message_body}}</td>
                                             <td>
                                                 <button class="btn btn-warning notsee" type="submit"><i
-                                                        class="fa fa-eye"></i></button>
+                                                        class="fa fa-check"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -62,16 +62,16 @@
             $('tbody').on('click', '.notsee', function () {
                 var tr = $(this).parents('tr');
                 var id = $(this).parents('tr').attr('id');
+                $(this).parents('tr').remove();
                 $.ajax({
-                    url: "admin/message",
+                    url: "/see",
                     type: "POST",
                     data: {
                         'id': id,
                         "_token": "{{ csrf_token() }}",
                     },
                     success: function (response) {
-                        tr.find('notsee').remove();
-                        // tr.find('see').add();
+
                     }
                 })
             })
