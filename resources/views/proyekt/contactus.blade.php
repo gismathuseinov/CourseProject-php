@@ -24,15 +24,15 @@
 
             <div class="form-group">
                 <label for="name">Emailiniz</label>
-                <input class="form-control" id="name" type="email" name="name">
+                <input class="form-control" id="name" type="email" name="email">
             </div>
             <div class="form-group">
                 <label for="email">Mesaj başlığı</label>
-                <input class="form-control" id="email" type="text" name="email">
+                <input class="form-control" id="email" type="text" name="message_title">
             </div>
             <div class="form-group">
                 <label for="message">Mesajınız</label>
-                <textarea class="form-control" id="message" name="mesaj"></textarea>
+                <textarea class="form-control" id="message" name="message_body"></textarea>
             </div>
         </form>
         <div class="col-3" style="margin-left: 36%;">
@@ -45,28 +45,28 @@
 
     <script>
         $('.btn-primary').click(function () {
-            var name = $('input[name=name]').val();
             var email = $('input[name=email]').val();
-            var mesaj = $('textarea[name=mesaj]').val();
+            var message_title = $('input[name=message_title]').val();
+            var message_body = $('textarea[name=message_body]').val();
             // console.log(mesaj)
             $.ajax({
-                url: "send",
+                url: "/send",
                 type: "POST",
                 data: {
-                    'name': name,
                     'email': email,
+                    'message_title': message_title,
+                    'message_body': message_body,
                     "_token": "{{ csrf_token() }}",
-                    'mesaj': mesaj,
                 },
                 success: function (response) {
-                    if (response.message == 'success') {
-                        alert('Şikayətinə 24 saat ərzində baxılacaq')
-                        $('input[name=name]').val("");
-                        $('input[name=email]').val("");
-                        $('input[name=email]').val("");
-                        $('textarea[name=mesaj]').val("");
-                    }
-                }
+                    toastr.success(response.message);
+                    $('input[name=email]').val("");
+                    $('input[name=message_title]').val("");
+                    $('textarea[name=message_body]').val("");
+                },
+                error: function (request, error, response) {
+                    toastr.error(request.responseJSON.errors[Object.keys(request.responseJSON.errors)[0]]);
+                },
             })
         })
     </script>
