@@ -11,9 +11,18 @@ use Illuminate\Support\Facades\DB;
 
 class ComplaintController extends Controller
 {
-    public function create_post(Complaint $complaint, int $user_id)
+    public function create_post(Complaint $complaint)
     {
-        $user = User::find($user_id);
-        echo($user);
+
+        $user = \auth()->user();
+
+        $user = User::find($user->id);
+
+        $user->comments()->create($complaint->validated());
+
+        return response()->json([
+            'msg' => 'Şikayətə 24 saat ərzində baxılacaq'
+        ]);
+
     }
 }
