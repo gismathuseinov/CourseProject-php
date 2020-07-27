@@ -2,46 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\ReplyComments;
-use http\Env\Response;
+use App\PostComment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
-use App\Comments;
+use App\Complaint;
 
 class IndexController extends Controller
 {
-    public function about()
-    {
-        return view('proyekt.about');
-    }
 
     public function index(Request $request)
     {
-
-        // $user = DB::select('SELECT COUNT(id) as say FROM users');
-
         $userCount = User::count();
 
-        // $sikayet = DB::select('SELECT COUNT(id) as sikayetsay FROM comments WHERE is_letted=1');
-        $issueCount = Comments::where('is_letted', 1)->count();
+        $issueCount = Complaint::where('is_letted', 1)->count();
 
+        $comments = Complaint::where('is_letted', 1)->paginate(6);
 
-        // $comments = DB::table('comments')
-        //     ->where('is_letted', '=', 1)
-        //     ->leftJoin('users', 'comments.user_id', '=', 'users.id')
-        //     ->select('comments.commenttitle', 'users.name', 'comments.comment', 'comments.id', 'comments.company_name', 'comments.created_at')
-        //     ->paginate(6);
-        $comments = Comments::where('is_letted', 1)->paginate(6);
-        return view('proyekt.index', [
-            'comments' => $comments,
-            'users' => $userCount,
-            'sikayet' => $issueCount
-        ]);
+        return view('proyekt.index', compact(['userCount', 'issueCount', 'comments']));
+    }
 
-
-
+    public function about()
+    {
+        return view('proyekt.about');
     }
 
     public function main()
@@ -56,15 +40,8 @@ class IndexController extends Controller
 
     public function complaint()
     {
-        $comment = DB::table('comments')
-            ->where('is_letted', '=', 1)
-            ->leftJoin('users', 'comments.user_id', '=', 'users.id')
-            ->select('comments.commenttitle', 'users.name', 'comments.comment', 'comments.id', 'comments.company_name', 'comments.created_at')
-            ->paginate(6);
-        // ->get();
-        return view('proyekt.complaint', [
-            'comment' => $comment,
-        ]);
+        $comment = Complaint::all();
+        return view('proyekt.complaint', compact('comment'));
     }
 
     public function sikeytet()
@@ -74,48 +51,49 @@ class IndexController extends Controller
 
     public function post(Request $request, int $id)
     {
-        // $id = $request->id;
-        $post = DB::table('comments')
-            ->where('comments.id', $id)
-            ->leftJoin('users', 'comments.user_id', '=', 'users.id')
-            ->select('users.name', 'comments.comment', 'comments.commenttitle', 'comments.compphoto', 'comments.company_name', 'comments.created_at','comments.id')
-            ->get();
+        $post = Complaint::findOrFail($id);
 
-        $getdata = DB::table('reply_comments')
-                ->where('reply_comments.post_id',$id)
-                ->leftJoin('users','reply_comments.user_id','=','users.id')
-                ->leftJoin('comments','reply_comments.post_id','=','comments.id')
-                ->select('users.name','reply_comments.comments')
-                ->get();
+        $comments = PostComment::where('complaint_id',$id)->get();
+
         return view('proyekt.post', [
             'post' => $post,
-            'getdata'=>$getdata,
+            'comment' => $comments,
         ]);
     }
 
-    public function post_comment(Request $request)
+    public function comment_create(\App\Http\Requests\PostComment $request, int $post_id)
     {
-        $comments = $request->comments;
-        $user_id=Auth::id();
-        $post_id = $request->post_id;
-        $name = Auth::user()->name;
-        $add = new ReplyComments();
-        $add->user_id = $user_id;
-        $add->post_id = $post_id;
-        $add->comments = $comments;
-        $add->save();
-        return response()->json(['message'=>'success','name'=>$name,'comment'=>$comments,]);
+        $user = \auth()->user();
+
+        $name = $user->name;
+
+        $post = Complaint::findOrFail($post_id);
+
+        $validated = $request->validated();
+
+        $comment = $post->comments()->create([
+            'user_id' => $user->id,
+            'comments' => $validated['comments'],
+        ]);
+
+        return response()->json([
+            'message' => 'success',
+            'name' => $name,
+            'comment' => $comment,
+        ]);
     }
-    public function search(Request $request){
+
+    public function search(Request $request)
+    {
         $data = $request->data;
         $result = DB::table('comments')
             ->leftJoin('users', 'comments.user_id', '=', 'users.id')
             ->select('comments.commenttitle', 'users.name', 'comments.comment', 'comments.id', 'comments.company_name', 'comments.created_at')
             ->where('comments.comment', 'LIKE', "%{$data}%")
-            ->orWhere('comments.company_name','LIKE',"%{$data}%")
-            ->orWhere('comments.commenttitle','LIKE',"%{$data}%")
+            ->orWhere('comments.company_name', 'LIKE', "%{$data}%")
+            ->orWhere('comments.commenttitle', 'LIKE', "%{$data}%")
             ->get();
-        return response()->json(['message'=>'success', 'result'=>$result]);
+        return response()->json(['message' => 'success', 'result' => $result]);
 
     }
 }
