@@ -84,7 +84,7 @@
     $(document).ready(function () {
         @if (\Illuminate\Support\Facades\Auth::id())
         $('header .header').append(`
-         <a href="index"><img src="{{asset('Project/img/logo2.png')}}" alt=""></a>
+         <a href="{{route('site.index')}}"><img src="{{asset('Project/img/logo2.png')}}" alt=""></a>
         <ul style="display:flex;flex-direction: row;">
             <li><a href="{{route('site.index')}}" class="menu">Ana səhifə</a></li>
             <li><a href="{{route('about')}}" class="menu">Haqqımızda</a></li>
