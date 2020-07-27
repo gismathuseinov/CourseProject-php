@@ -8,15 +8,15 @@
                     <h2>{{$value->company_name}}</h2>
                 </div>
                 <div class="about">
-                    <h5><i class="fa fa-user fa-1x"></i> {{$value->name}}</h5>
+                    <h5><i class="fa fa-user fa-1x"></i> {{$value->user->name}}</h5>
                     <span><i class="fa fa-clock-o"></i> {{$value->created_at}}</span>
                 </div>
                 <hr>
                 <div class="commenttitle">
-                    <h4>{{$value->commenttitle}}</h4>
+                    <h4>{{$value->complaint_title}}</h4>
                 </div>
                 <div class="yazi">
-                    <span>{{$value->comment}}</span>
+                   {{$value->complaint_body}}
                 </div>
                 <hr>
             </div>
@@ -38,8 +38,8 @@
                     <button class="btn btn-outline-info">Göndər</button>
                 </div>
 
-                 
-                @foreach($getdata as $key => $value)
+
+                @foreach($comment as $key => $value)
                 <div class="blog-comments">
 							<div class="media">
 								<div class="media-body">
@@ -48,22 +48,22 @@
 								</div>
 							</div>
 							<!-- /comment -->
-						</div> 
+						</div>
                 @endforeach
-               
+
 
 `);
             @else
             $('.comment_post').append(`
                 <div class="comment">
-                    <span>Rəy bildirmək üçün <a href="/register">qeydiyyatdan</a> keçin</span>
+                    <span>Rəy bildirmək üçün <a href={{route('register')}}>qeydiyyatdan</a> keçin</span>
                     <textarea name="comment" id="" cols="114" rows="5"></textarea>
                 </div>
                 <div class="send">
                     <button class="btn btn-outline-info disabled" style="cursor: no-drop;">Göndər</button>
                 </div>
-               
-                @foreach($getdata as $key => $value)
+
+                @foreach($comment as $key => $value)
                 <div class="blog-comments">
 							<div class="media">
 								<div class="media-body">
@@ -71,9 +71,9 @@
 									<p>{{$value->comments}}</p>
 								</div>
 							</div>
-						</div>    
+						</div>
                 @endforeach
-                
+
                `);
             @endif
         //send_comments
@@ -86,7 +86,7 @@
             else{
                 $.ajax({
                     type:"POST",
-                    url:"post_comments",
+                    url:"/create/post/comment",
                     data:{
                         'comments':comments,
                         'post_id':post_id,
@@ -99,11 +99,11 @@
                         <div class="blog-comments">
 							<div class="media">
 								<div class="media-body">
-									<h4 class="media-heading">`+response.name+`<span class="time"></span></h4>
+									<h4 class="media-heading">`+response.user+`<span class="time"></span></h4>
 									<p>`+response.comment+`</p>
 								</div>
 							</div>
-						</div> 
+						</div>
                         `)
                         }
                     }
