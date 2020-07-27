@@ -31,9 +31,9 @@ class Complaint extends FormRequest
     {
         return [
             'email' => ['required', 'email', 'min:8', 'max:70'],
-            'company_name' => 'required|string|min:5|max:70',
-            'complaint_title' => 'required|string|min:30|max:300',
-            'complaint_body' => 'required|string|min:100|max:10000',
+            'company_name' => ['required','string','min:5','max:70'],
+            'complaint_title' => ['required','string','min:20','max:300'],
+            'complaint_body' => ['required','string','min:100','max:10000'],
         ];
     }
 
