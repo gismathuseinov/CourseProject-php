@@ -20,8 +20,9 @@ class AdminController extends Controller
 
         $users = User::orderBy('id','desc')->paginate('6');
 
+        $posts = Complaint::all();
 
-        return view('proyekt.nice-html.ltr.index', compact(['userCount', 'unReadMessage', 'newComplaint','users']));
+        return view('proyekt.nice-html.ltr.index', compact(['userCount', 'unReadMessage', 'newComplaint','users','posts']));
     }
 
     public function issue()
