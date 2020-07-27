@@ -18,7 +18,7 @@ class ComplaintController extends Controller
         $user->posts()->create($complaint->validated());
 
         return response()->json([
-            'msg' => 'Şikayətə 24 saat ərzində baxılacaq'
+            'message' => 'Şikayətə 24 saat ərzində baxılacaq'
         ]);
 
     }
