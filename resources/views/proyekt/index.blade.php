@@ -56,7 +56,7 @@
                     <h5><a href="{{ route("post.view", ['id' => $comment->id ]) }}">{{$comment->complaint_title}}</a></h5>
                 </div>
                 <div class="yazi">
-                    <span> {{Illuminate\Support\Str::limit($comment->complaint_body,125)}}</span>
+                    <span> {{Illuminate\Support\Str::limit($comment->complaint_body,155)}}</span>
                 </div>
                 <hr>
             </div>
