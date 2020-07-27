@@ -12,7 +12,16 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('proyekt.nice-html.ltr.index');
+        $userCount = User::count();
+
+        $unReadMessage = Feedback::where('is_seen', 0)->count();
+
+        $newComplaint = Complaint::where('is_letted', 0)->count();
+
+        $users = User::orderBy('id','desc')->paginate('6');
+
+
+        return view('proyekt.nice-html.ltr.index', compact(['userCount', 'unReadMessage', 'newComplaint','users']));
     }
 
     public function issue()
@@ -25,7 +34,7 @@ class AdminController extends Controller
     public function message()
     {
 
-        $feedback = Feedback::where('is_seen',0)->get();
+        $feedback = Feedback::where('is_seen', 0)->get();
 
         return view('proyekt.nice-html.ltr.message', compact('feedback'));
     }
