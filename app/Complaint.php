@@ -16,6 +16,6 @@ class Complaint extends Model
     }
     public function comments()
     {
-        return $this->hasMany(PostComment::class);
+        return $this->hasMany(PostComment::class,'complaint_id','id');
     }
 }
