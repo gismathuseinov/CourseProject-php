@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Complaint;
 use App\Feedback;
+use App\Http\Requests\PostComment;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ class AdminController extends Controller
 
         $users = User::orderBy('id','desc')->paginate('6');
 
-        $posts = Complaint::all();
+        $posts = Complaint::paginate(6);
 
         return view('proyekt.nice-html.ltr.index', compact(['userCount', 'unReadMessage', 'newComplaint','users','posts']));
     }
