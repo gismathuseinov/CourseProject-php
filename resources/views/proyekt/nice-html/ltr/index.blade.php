@@ -52,7 +52,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="#">Home</a>
+                                    <a href="{{route('admin.dashboard')}}">Home</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">DashBoard</li>
                             </ol>
@@ -94,7 +94,8 @@
                                         </div>
                                         <div class="progres">
                                             <div>
-                                                <button class="btn btn-outline-warning"><a href="{{route('admin.message')}}">Show</a></button>
+                                                <button class="btn btn-outline-warning"><a
+                                                        href="{{route('admin.message')}}">Show</a></button>
                                             </div>
                                         </div>
                                     </div>
@@ -112,12 +113,37 @@
                                         </div>
                                         <div class="progres">
                                             <div>
-                                                <button class="btn btn-outline-warning"><a href="{{route('admin.issue')}}">Show</a></button>
+                                                <button class="btn btn-outline-warning"><a
+                                                        href="{{route('admin.issue')}}">Show</a></button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <h1>Posts</h1>
+                                <ul class="list-group">
+                                    @foreach($posts as $key => $post)
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        {{$post->complaint_title}}
+                                        <span class="badge badge-primary badge-pill">14</span>
+                                        <div class="form-group">
+                                            <select class="form-control">
+                                                <option value="1">Active</option>
+                                                <option value="0">Deactive</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -152,7 +178,7 @@
                                     </tbody>
                             </div>
                             <div class="pagination">
-                              {{$users->links()}}
+                                {{$users->links()}}
                             </div>
                         </div>
                     </div>
