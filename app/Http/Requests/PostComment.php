@@ -31,7 +31,7 @@ class PostComment extends FormRequest
     public function rules()
     {
         return [
-           'post_comments' => ['required','string','max:250'],
+           'comments' => ['required','string','max:250'],
         ];
     }
 }
