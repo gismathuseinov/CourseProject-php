@@ -10,6 +10,6 @@ class PostComment extends Model
 
     public function post()
     {
-        return $this->hasOne(Complaint::class, 'id', 'complaint_id');
+        return $this->hasOne(Complaint::class);
     }
 }
