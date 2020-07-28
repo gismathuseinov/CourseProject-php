@@ -13,8 +13,8 @@ class AdminSeeder extends Seeder
     {
        \Illuminate\Support\Facades\DB::table('users')
            ->insert([
-                'name'=> 'Admin',
-                'surname'=> 'QismetHusein',
+                'name'=> 'Qismet',
+                'surname'=> 'Huseyn',
                 'number'=> '705713112',
                 'email'=> 'qismeths60@gmail.com',
                 'password'=> bcrypt('qismethusein'),
