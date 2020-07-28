@@ -83,7 +83,7 @@ class IndexController extends Controller
     public function get_post_comments(int $post_id)
     {
         $post = Complaint::with(["comments", 'comments.user'])->findOrFail($post_id);
-        
+
         return response()->json([
             'status' => 'OK',
             'comments' => $post->comments,
