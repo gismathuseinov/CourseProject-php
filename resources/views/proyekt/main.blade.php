@@ -30,8 +30,40 @@
 
 <header>
     <div class="header" style="background-color:#ecf0f1">
-
-
+        @auth()
+            <a href="{{route('site.index')}}"><img src="{{asset('Project/img/logo2.png')}}" alt=""></a>
+            <ul style="display:flex;flex-direction: row;">
+                <li><a href="{{route('site.index')}}" class="menu">Ana səhifə</a></li>
+                <li><a href="{{route('about')}}" class="menu">Haqqımızda</a></li>
+                <li><a href="{{route('contact')}}" class="menu">Əlaqə</a></li>
+                <li>
+                    <div class="dropdown">
+                        <button class="btn-lg btn btn-success dropdown-toggle" type="button" id="dropdownMenu2"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user fa-1x"></i>
+                            &nbsp;&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
+                        </button>
+                        <div class="dropdown-menu drpdwn" aria-labelledby="dropdownMenu2">
+                            <a class="dropdown-item btn btn-primary " href={{route('logout')}}>Çıxış</a>
+                            @if (\Illuminate\Support\Facades\Auth::id()==1)
+                                <a class="dropdown-item btn btn-primary " href={{route('admin.dashboard')}}>Admin
+                                    panel</a>
+                            @endif
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        @endauth
+        @guest()
+            <a href="index"><img src="{{asset('Project/img/logo2.png')}}" alt=""></a>
+            <ul>
+                <li><a href="{{route('site.index')}}" class="menu">Ana səhifə</a></li>
+                <li><a href="{{route('about')}}" class="menu">Haqqımızda</a></li>
+                <li><a href="{{route('contact')}}" class="menu">Əlaqə</a></li>
+                <li><a class="button" href="{{ route('login') }}" rel="nofollow noopener">Giriş</a></li>
+                <li><a class="button" href="{{ route('register') }}" rel="nofollow noopener">Qedyiyyat</a></li>
+            </ul>
+        @endguest
     </div>
 </header>
 
@@ -82,41 +114,8 @@
 </html>
 <script>
     $(document).ready(function () {
-        @if (\Illuminate\Support\Facades\Auth::id())
-        $('header .header').append(`
-         <a href="{{route('site.index')}}"><img src="{{asset('Project/img/logo2.png')}}" alt=""></a>
-        <ul style="display:flex;flex-direction: row;">
-            <li><a href="{{route('site.index')}}" class="menu">Ana səhifə</a></li>
-            <li><a href="{{route('about')}}" class="menu">Haqqımızda</a></li>
-            <li><a href="{{route('contact')}}" class="menu">Əlaqə</a></li>
-            <li>
-                <div class="dropdown" >
-                    <button class="btn-lg btn btn-success dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user fa-1x"></i>
-                        &nbsp;&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
-                    </button>
-                <div class="dropdown-menu drpdwn" aria-labelledby="dropdownMenu2">
-                        <a class="dropdown-item btn btn-primary " href={{route('logout')}}>Çıxış</a>
-                    @if (\Illuminate\Support\Facades\Auth::id()==1)
-                        <a class="dropdown-item btn btn-primary " href={{route('admin.dashboard')}}>Admin panel</a>
-                    @endif
 
-            </div>
-        </div>
-            </li>
-        </ul>
-        `)
-        @else
-        $('header .header').append(`
-         <a href="index"><img src="{{asset('Project/img/logo2.png')}}" alt=""></a>
-        <ul>
-            <li><a href="{{route('site.index')}}" class="menu">Ana səhifə</a></li>
-            <li><a href="{{route('about')}}" class="menu">Haqqımızda</a></li>
-            <li><a href="{{route('contact')}}" class="menu">Əlaqə</a></li>
-            <li><a class="button" href="/login"  rel="nofollow noopener">Giriş</a></li>
-            <li><a class="button" href="/register"  rel="nofollow noopener">Qedyiyyat</a></li>
-        </ul>`)
-        @endif
+
     })
 
 </script>
