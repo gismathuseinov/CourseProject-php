@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\PostComment;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\User;
 use App\Complaint;
+use App\PostComment;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -53,12 +52,9 @@ class IndexController extends Controller
     {
         $post = Complaint::findOrFail($id);
 
-        $comments = PostComment::where('complaint_id',$id)->get();
+        $comments = PostComment::where('complaint_id', $id)->orderBy('id', 'desc')->get();
 
-        return view('proyekt.post', [
-            'post' => $post,
-            'comment' => $comments,
-        ]);
+        return view('proyekt.post', compact(['post', 'comments']));
     }
 
     public function comment_create(\App\Http\Requests\PostComment $request, int $post_id)
@@ -77,9 +73,20 @@ class IndexController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'success',
+            'status' => 'success',
             'name' => $name,
-            'comment' => $comment,
+            'comment' => $comment->comments,
+            'time' => date("H:i", strtotime($comment->created_at))
+        ]);
+    }
+
+    public function get_post_comments(int $post_id)
+    {
+        $post = Complaint::with(["comments", 'comments.user'])->findOrFail($post_id);
+        
+        return response()->json([
+            'status' => 'OK',
+            'comments' => $post->comments,
         ]);
     }
 
@@ -96,5 +103,7 @@ class IndexController extends Controller
         return response()->json(['message' => 'success', 'result' => $result]);
 
     }
+
+
 }
 
