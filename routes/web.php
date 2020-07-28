@@ -23,6 +23,7 @@ Route::get('/logout', 'Signout@exit')->name('logout');
 Route::get('/post/view/{id}', 'IndexController@post')->name("post.view");
 Route::post('/send', 'ContactController@send');
 
+Route::get('/post/{post_id}/comments', 'IndexController@get_post_comments')->name('post.get.comments');
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/create_post', 'ComplaintController@create_post');
