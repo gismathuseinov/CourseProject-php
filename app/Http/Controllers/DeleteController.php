@@ -6,7 +6,7 @@ use App\Complaint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Delete extends Controller
+class DeleteController extends Controller
 {
     public function delete(Request $request)
     {
