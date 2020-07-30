@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use MongoDB\Driver\Session;
 
-class Check extends Controller
+class CheckController extends Controller
 {
     public function check(){
         $check = session()->has('users');
@@ -19,8 +19,5 @@ class Check extends Controller
         {
             return response()->json(['status'=>1]);
         }
-
-
-
     }
 }
