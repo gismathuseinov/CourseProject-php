@@ -12,11 +12,15 @@ class IndexController extends Controller
     {
         $userCount = User::count();
 
-        $issueCount = Complaint::where('is_letted', 1)->count();
+        $issueCount = Complaint::where('is_letted', 1)
+            ->where('is_active',1)
+            ->count();
 
-        $comments = Complaint::where('is_letted', 1)->paginate(6);
+        $complaints = Complaint::where('is_letted', 1)
+            ->where('is_active',1)
+            ->paginate(6);
 
-        return view('proyekt.index', compact(['userCount', 'issueCount', 'comments']));
+        return view('proyekt.index', compact(['userCount', 'issueCount', 'complaints']));
     }
     public function about()
     {
