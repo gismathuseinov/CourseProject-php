@@ -1,7 +1,7 @@
 
 @extends('proyekt.main')
 @section('main')
-{{--    <br><br><br>--}}
+
     <div class="container ifade col-12">
         <div class="col-6 search">
             <div class="text">
@@ -14,9 +14,16 @@
                     <i class="fa fa-search"></i>
                 </a>
             </div>
-            <div class="Btn">
-                <button class="btn btn-success writecomment">Şikayət et</button>
-            </div>
+            @guest
+                <div class="Btn">
+                    <button class="btn btn-success writecomment"><a style="color: white;text-decoration: none;" href="{{ route('login') }}">Şikayət et</a></button>
+                </div>
+            @endguest
+            @auth()
+                <div class="Btn">
+                    <button class="btn btn-success writecomment"><a style="color: white;text-decoration: none;" href="{{ route('write.complaint') }}">Şikayət et</a></button>
+                </div>
+            @endauth
         </div>
         <br>
         <div class="col-6 yazi">
@@ -49,7 +56,7 @@
                 </div>
                 <div class="about">
                     <h5><i class="fa fa-user fa-1x"></i> {{$comment->user->name}}</h5>
-                    <span><i class="fa fa-clock-o"></i> {{$comment->created_at}}</span>
+                    <span><i class="fa fa-clock-o"></i> {{date('D-h:i', strtotime($comment->created_at))}}</span>
                 </div>
                 <hr>
                 <div class="commenttitle">
@@ -92,7 +99,7 @@
             <h1>Bütün şikayətlər</h1>
             <span>Hər hansı firma ilə əlaqə qurmamışdan qabaq baxın</span>
             <br>
-            <button><a href="/sikayetler">Şikayətlər</a></button>
+            <button><a href="{{ route('complaint') }}">Şikayətlər</a></button>
         </div>
         <div class="col-md-6">
             <img src="{{ asset('Project/img/img.png') }}" alt="burada sizin sekliniz ola bilmez">
@@ -100,20 +107,12 @@
     </div>
     <br><br>
     <script>
-
-
-        $('.writecomment').click(function () {
-            @if(\Illuminate\Support\Facades\Auth::id())
-                window.location = '/sikayet';
-            @else
-                window.location = '/login';
-            @endif
-        })
         $('.search-div').on('click', '.button', function () {
             var data = $('input[name=searchinput]').val();
+            console.log(data)
             $.ajax({
                 type: "POST",
-                url: "/search",
+                url: "{{ route('search') }}",
                 data: {
                     'data': data,
                     "_token": "{{ csrf_token() }}",
@@ -122,30 +121,27 @@
                    if(response.message=='success') {
 
                        $('.sikayet').html('');
-                       response.result.forEach(search);
-
-                       function search(item, index) {
+                       response.results.forEach(function (result) {
                            $('.sikayet').append(`
-                          <div class="col-10 complaint">
-                <div class="basliq">
-                    <h2>${item['company_name']}</h2>
-                </div>
-                <div class="about">
-                    <h5><i class="fa fa-user fa-1x"></i>${item['name']}</h5>
-                    <span><i class="fa fa-clock-o"></i> ${item['created_at']}</span>
-                </div>
-                <hr>
-                <div class="commenttitle">
-                    <h5><a href="/post?id=${item['id']}">${item['commenttitle']}</a></h5>
-                </div>
-                <div class="yazi">
-                    <span>${item['comment']}</span>
-                </div>
-                <hr>
-            </div>
-                          `)
-                       }
-                   }
+                            <div class="col-10 complaint">
+                                <div class="basliq">
+                                    <h2>${result.company_name}</h2>
+                                </div>
+                                <div class="about">
+                                    <h5><i class="fa fa-user fa-1x"></i>${result.name}</h5>
+                                    <span><i class="fa fa-clock-o"></i> ${result.created_at}</span>
+                                </div>
+                                <hr>
+                                <div class="commenttitle">
+                                    <h5><a href="{{ route("post.view", ['id' => $comment->id ]) }}">${result.complaint_title}</a></h5>
+                                </div>
+                                <div class="yazi">
+                                    <span>${result.complaint_body}</span>
+                                </div>
+                                <hr>
+                            </div>`)
+                       });
+                    }
                 }
             })
         });
