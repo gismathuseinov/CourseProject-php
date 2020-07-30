@@ -21,9 +21,9 @@ class AdminController extends Controller
 
         $users = User::orderBy('id','desc')->paginate('6');
 
-        $posts = Complaint::with(['comments'])->paginate(6);
+        $postTitles = Complaint::with(['comments'])->orderByDesc('id')->paginate(6);
 
-        return view('proyekt.nice-html.ltr.index', compact(['userCount', 'unReadMessage', 'newComplaint','users','posts']));
+        return view('proyekt.nice-html.ltr.index', compact(['userCount', 'unReadMessage', 'newComplaint','users','postTitles']));
     }
 
     public function issue()
