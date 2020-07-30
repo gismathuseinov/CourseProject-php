@@ -134,7 +134,7 @@
                                     @foreach($posts as $key => $post)
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         {{$post->complaint_title}}
-                                        <span class="badge badge-primary badge-pill">14</span>
+                                        <span class="badge badge-primary badge-pill">{{ $post->comments }}</span>
                                         <div class="form-group">
                                             <select class="form-control">
                                                 <option value="1">Active</option>
@@ -172,7 +172,7 @@
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->surname}}</td>
                                             <td>{{$user->email}}</td>
-                                            <td>{{$user->number}}</td>
+                                            <td>+994{{$user->number}}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
