@@ -17,7 +17,7 @@ class SearchController extends Controller
             ['complaint_title','like',"%{$data}%"],
             ['complaint_body','like',"%{$data}%"],
             ['company_name','like',"%{$data}%"],
-        ])->get();
+        ])->with('user')->get();
 
         return response()->json(['message' => 'success', 'results' => $results]);
 
