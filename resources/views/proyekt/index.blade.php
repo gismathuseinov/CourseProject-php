@@ -63,7 +63,7 @@
                     <h5><a href="{{ route("post.view", ['id' => $comment->id ]) }}">{{$comment->complaint_title}}</a></h5>
                 </div>
                 <div class="yazi">
-                    <span> {{Illuminate\Support\Str::limit($comment->complaint_body,155)}}</span>
+                    <span> {{Illuminate\Support\Str::limit($comment->complaint_body,350)}}</span>
                 </div>
                 <hr>
             </div>
@@ -122,14 +122,39 @@
 
                        $('.sikayet').html('');
                        response.results.forEach(function (result) {
+
+                           function time(){
+                               let time =new Date(Date.parse(result.created_at));
+                               let day = (time.getDate()+1).toString()
+
+                               let hours = time.getHours().toString();
+                               let minutes = time.getMinutes().toString();
+                               let months = new Array();
+                               months[0] = "Yanvar";
+                               months[1] = "Fevral";
+                               months[2] = "Mart";
+                               months[3] = "Aprel";
+                               months[4] = "May";
+                               months[5] = "İyun";
+                               months[6] = "İyul";
+                               months[7] = "Avqust";
+                               months[8] = "Sentyabr";
+                               months[9] = "Oktyabr";
+                               months[10] = "Noyabr";
+                               months[11] = "Dekabr";
+                               let month = months[time.getDay()]
+                               let date = day.concat(' ',month,'  ',hours,':',minutes);
+                               return date;
+                           }
+
                            $('.sikayet').append(`
                             <div class="col-10 complaint">
                                 <div class="basliq">
                                     <h2>${result.company_name}</h2>
                                 </div>
                                 <div class="about">
-                                    <h5><i class="fa fa-user fa-1x"></i>${result.name}</h5>
-                                    <span><i class="fa fa-clock-o"></i> ${result.created_at}</span>
+                                    <h5><i class="fa fa-user fa-1x"></i>${result.user.name}</h5>
+                                    <span><i class="fa fa-clock-o"></i> ${time()}</span>
                                 </div>
                                 <hr>
                                 <div class="commenttitle">

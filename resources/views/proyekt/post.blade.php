@@ -9,7 +9,7 @@
             </div>
             <div class="about">
                 <h5><i class="fa fa-user fa-1x"></i> {{$post->user->name}}</h5>
-                <span><i class="fa fa-clock-o"></i> {{$post->created_at}}</span>
+                <span><i class="fa fa-clock-o"></i>{{date('D-h:i', strtotime($post->created_at))}}</span>
             </div>
             <hr>
             <div class="commenttitle">
@@ -59,11 +59,34 @@
                 success: function (response) {
                     $(".comments").empty();
                     response.comments.forEach(function (comment) {
+                        function time(){
+                            let time =new Date(Date.parse(comment.created_at));
+                            let day = (time.getDate()+1).toString()
+
+                            let hours = time.getHours().toString();
+                            let minutes = time.getMinutes().toString();
+                            var months = new Array();
+                            months[0] = "Yanvar";
+                            months[1] = "Fevral";
+                            months[2] = "Mart";
+                            months[3] = "Aprel";
+                            months[4] = "May";
+                            months[5] = "İyun";
+                            months[6] = "İyul";
+                            months[7] = "Avqust";
+                            months[8] = "Sentyabr";
+                            months[9] = "Oktyabr";
+                            months[10] = "Noyabr";
+                            months[11] = "Dekabr";
+                            let month = months[time.getDay()]
+                            let date = day.concat(' ',month,'  ',hours,':',minutes);
+                            return date;
+                        }
                         $('.comments').append(`
                          <div class="blog-comments">
                              <div class="media">
                                  <div class="media-body">
-                                     <h4 class="media-heading">${comment.user.name}<span class="time">${comment.created_at}</span></h4>
+                                     <h6 s class="media-heading">${comment.user.name}<span class="time">${time()}</span></h6>
                                     <p>${comment.comments}</p>
                                 </div>
                             </div>
