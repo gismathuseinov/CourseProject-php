@@ -134,7 +134,7 @@
                                     @foreach($posts as $key => $post)
                                     <li class="list-group-item d-flex justify-content-between align-items-center">
                                         {{$post->complaint_title}}
-                                        <span class="badge badge-primary badge-pill">{{ $post->comments }}</span>
+                                        <span class="badge badge-primary badge-pill">{{ $post->comments->count()}}</span>
                                         <div class="form-group">
                                             <select class="form-control">
                                                 <option value="1">Active</option>
