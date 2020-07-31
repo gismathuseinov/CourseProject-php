@@ -10,7 +10,7 @@ class EditController extends Controller
     public function edit(Request $request)
     {
         $id = $request->id;
-        $d = Complaint::where('id', $id)->update(
+        Complaint::where('id', $id)->update(
             [
                 'company_name' => $request->company_name,
                 'complaint_title' => $request->complaint_title,
