@@ -49,21 +49,21 @@
     </div>
 
     <div class="container sikayet">
-        @foreach($comments as $key  => $comment)
+        @foreach($complaints as $key  => $complaint)
             <div class="col-10 complaint">
                 <div class="basliq">
-                    <h2>{{$comment->company_name}}</h2>
+                    <h2>{{$complaint->company_name}}</h2>
                 </div>
                 <div class="about">
-                    <h5><i class="fa fa-user fa-1x"></i> {{$comment->user->name}}</h5>
-                    <span><i class="fa fa-clock-o"></i> {{date('D-h:i', strtotime($comment->created_at))}}</span>
+                    <h5><i class="fa fa-user fa-1x"></i> {{$complaint->user->name}}</h5>
+                    <span><i class="fa fa-clock-o"></i> {{date('D-h:i', strtotime($complaint->created_at))}}</span>
                 </div>
                 <hr>
                 <div class="commenttitle">
-                    <h5><a href="{{ route("post.view", ['id' => $comment->id ]) }}">{{$comment->complaint_title}}</a></h5>
+                    <h5><a href="{{ route("post.view", ['id' => $complaint->id ]) }}">{{$complaint->complaint_title}}</a></h5>
                 </div>
                 <div class="yazi">
-                    <span> {{Illuminate\Support\Str::limit($comment->complaint_body,350)}}</span>
+                    <span> {{Illuminate\Support\Str::limit($complaint->complaint_body,350)}}</span>
                 </div>
                 <hr>
             </div>
@@ -71,7 +71,7 @@
         @endforeach
         <br><br>
         <div class="pagination" style="margin-left: 40%; margin-top: 10%;">
-            {{$comments->links()}}
+            {{$complaints->links()}}
         </div>
     </div>
     <br><br><br>
@@ -109,7 +109,6 @@
     <script>
         $('.search-div').on('click', '.button', function () {
             var data = $('input[name=searchinput]').val();
-            console.log(data)
             $.ajax({
                 type: "POST",
                 url: "{{ route('search') }}",
@@ -124,27 +123,25 @@
                        response.results.forEach(function (result) {
 
                            function time(){
-                               let time =new Date(Date.parse(result.created_at));
-                               let day = (time.getDate()+1).toString()
+                               let time =new Date(Date.parse(comment.created_at));
+                               var month=new Array();
+                               month[0]="Yanvar";
+                               month[1]="Fevral";
+                               month[2]="Mart";
+                               month[3]="Aprel";
+                               month[4]="May";
+                               month[5]="Iyun";
+                               month[6]="Iyul";
+                               month[7]="Avqust";
+                               month[8]="Sentyabr";
+                               month[9]="Oktyabr";
+                               month[10]="Noyabr";
+                               month[11]="Dekabr";
+                               var hours = time.getHours();
+                               var minutes = time.getMinutes();
+                               minutes = minutes < 10 ? '0'+minutes : minutes;
 
-                               let hours = time.getHours().toString();
-                               let minutes = time.getMinutes().toString();
-                               let months = new Array();
-                               months[0] = "Yanvar";
-                               months[1] = "Fevral";
-                               months[2] = "Mart";
-                               months[3] = "Aprel";
-                               months[4] = "May";
-                               months[5] = "İyun";
-                               months[6] = "İyul";
-                               months[7] = "Avqust";
-                               months[8] = "Sentyabr";
-                               months[9] = "Oktyabr";
-                               months[10] = "Noyabr";
-                               months[11] = "Dekabr";
-                               let month = months[time.getDay()]
-                               let date = day.concat(' ',month,'  ',hours,':',minutes);
-                               return date;
+                               return time.getDate()+" "+month[time.getMonth()]+" "+hours+":"+minutes;
                            }
 
                            $('.sikayet').append(`
@@ -158,7 +155,7 @@
                                 </div>
                                 <hr>
                                 <div class="commenttitle">
-                                    <h5><a href="{{ route("post.view", ['id' => $comment->id ]) }}">${result.complaint_title}</a></h5>
+                                        <h5><a href="{{ route("post.view", ['id' => $complaint->id ]) }}">${result.complaint_title}</a></h5>
                                 </div>
                                 <div class="yazi">
                                     <span>${result.complaint_body}</span>
