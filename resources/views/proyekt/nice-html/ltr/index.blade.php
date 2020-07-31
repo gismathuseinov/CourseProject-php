@@ -130,20 +130,28 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <h1>Posts</h1>
-                                <ul class="list-group">
-                                    @foreach($posts as $key => $post)
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        {{$post->complaint_title}}
-                                        <span class="badge badge-primary badge-pill">{{ $post->comments->count()}}</span>
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option value="1">Active</option>
-                                                <option value="0">Deactive</option>
-                                            </select>
-                                        </div>
-                                    </li>
+                                <ul class="list-group" id="posts">
+                                    @foreach($postTitles as $key => $postTitle)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                                            id="{{$postTitle->id}}">
+                                            {{$postTitle->complaint_title}}
+                                            <span
+                                                class="badge badge-primary badge-pill">{{ $postTitle->comments->count() }}</span>
+                                            <div class="form-group">
+                                                <select class="form-control" name="active">
+                                                    <option disabled selected
+                                                            hidden>{{ $postTitle->is_active == '1' ? 'Active' : 'Deactive' }}</option>
+                                                    <option value="0">Deactive</option>
+                                                    <option value="1">Active</option>
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-success">OK</button>
+                                        </li>
                                     @endforeach
                                 </ul>
+                                <div class="pagination">
+                                    {{ $postTitles->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -153,7 +161,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="table-responsive" id="users">
+                            <div class="table-responsive">
                                 <h1>Users</h1>
                                 <table class="table">
                                     <thead>
@@ -186,4 +194,29 @@
             </div>
         </div>
     </div>
+    <script>
+
+        $('#posts li').click(function () {
+
+            let post_id = this.id;
+
+            $('select').click(function () {
+                let is_active = this.value;
+                $('.btn-success').click(function () {
+                    axios.post('{{ route('post.active') }}',
+                        {
+                            is_active,
+                            post_id,
+                        })
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                })
+            });
+        });
+
+    </script>
 @endsection
