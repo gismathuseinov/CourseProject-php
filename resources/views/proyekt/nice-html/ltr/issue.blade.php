@@ -145,7 +145,6 @@
                     var new_company_name = $('input[name=name]').val();
                     var new_title = $('textarea[name=title]').val();
                     var new_body = $('textarea[name=comment]').val();
-                    console.log(id)
                     $.ajax({
                         type: "POST",
                         url: "/edit",
