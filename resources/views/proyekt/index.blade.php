@@ -69,10 +69,9 @@
             </div>
             <br>
         @endforeach
-        <br><br>
-        <div class="pagination" style="margin-left: 40%; margin-top: 10%;">
-            {{$complaints->links()}}
-        </div>
+    </div>
+    <div class="pagination" style="margin-left: 40%; margin-top: 10%;">
+        {{$complaints->links()}}
     </div>
     <br><br><br>
     <div class="container-fluid common">
@@ -123,7 +122,7 @@
                        response.results.forEach(function (result) {
 
                            function time(){
-                               let time =new Date(Date.parse(comment.created_at));
+                               let time =new Date(Date.parse(result.created_at));
                                var month=new Array();
                                month[0]="Yanvar";
                                month[1]="Fevral";

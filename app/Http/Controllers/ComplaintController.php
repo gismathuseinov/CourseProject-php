@@ -20,8 +20,8 @@ class ComplaintController extends Controller
 
     public function complaint()
     {
-        $comment = \App\Complaint::all();
-        return view('proyekt.complaint', compact('comment'));
+        $complaints = \App\Complaint::orderBy('id','desc')->paginate(6);
+        return view('proyekt.complaint', compact('complaints'));
     }
 
     public function create_post(Complaint $complaint)

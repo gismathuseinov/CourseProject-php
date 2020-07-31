@@ -18,7 +18,8 @@ class IndexController extends Controller
 
         $complaints = Complaint::where('is_letted', 1)
             ->where('is_active',1)
-            ->paginate(6);
+            ->orderBy('id','desc')
+            ->paginate(4);
 
         return view('proyekt.index', compact(['userCount', 'issueCount', 'complaints']));
     }

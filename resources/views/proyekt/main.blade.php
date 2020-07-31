@@ -74,7 +74,6 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-6">
-                <h6>Kimik?</h6>
                 <p class="text-justify">Bu sayt Azərbaycanda müştəri, istehlakçı məmnuniyyəti və şikayətləri əsasında ölkədə demək olar ki, bütün sahələr üzrə fəaliyyət göstərən şirkət və markaların reytinqini təyin edə bilmək məqsədilə yaradılmış internet platformasıdır.</p>
             </div>
 
@@ -85,9 +84,9 @@
             <div class="col-xs-6 col-md-3">
                 <h6>Kateqoriyalar</h6>
                 <ul class="footer-links">
-                    <li><a href="#">Şikayətlər</a></li>
-                    <li><a href="#">Haqqımızda</a></li>
-                    <li><a href="#">Əlaqə</a></li>
+                    <li><a href="{{ route('complaint') }}">Şikayətlər</a></li>
+                    <li><a href="{{ route('about') }}">Haqqımızda</a></li>
+                    <li><a href="{{ route('contact') }}">Əlaqə</a></li>
                 </ul>
             </div>
         </div>
@@ -96,14 +95,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-6 col-xs-12">
-                <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by CoDeT</p>
+                <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by Qismat</p>
             </div>
 
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <ul class="social-icons">
                     <li><a class="facebook" href="https://www.facebook.com/profile.php?id=100009439965495"><i class="fa fa-facebook"></i></a></li>
                     <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a class="dribbble" href="https://www.instagram.com/qismethusein/"><i class="fa fa-instagram"></i></a></li>
+                    <li><a class="dribbble" href="https://www.instagram.com/qismathusein/"><i class="fa fa-instagram"></i></a></li>
                     <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
                 </ul>
             </div>
@@ -112,10 +111,3 @@
 </footer>
 </body>
 </html>
-<script>
-    $(document).ready(function () {
-
-
-    })
-
-</script>
