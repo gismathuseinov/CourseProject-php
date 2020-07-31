@@ -61,26 +61,24 @@
                     response.comments.forEach(function (comment) {
                         function time(){
                             let time =new Date(Date.parse(comment.created_at));
-                            let day = (time.getDate()+1).toString()
+                            var month=new Array();
+                            month[0]="Yanvar";
+                            month[1]="Fevral";
+                            month[2]="Mart";
+                            month[3]="Aprel";
+                            month[4]="May";
+                            month[5]="Iyun";
+                            month[6]="Iyul";
+                            month[7]="Avqust";
+                            month[8]="Sentyabr";
+                            month[9]="Oktyabr";
+                            month[10]="Noyabr";
+                            month[11]="Dekabr";
+                            var hours = time.getHours();
+                            var minutes = time.getMinutes();
+                            minutes = minutes < 10 ? '0'+minutes : minutes;
 
-                            let hours = time.getHours().toString();
-                            let minutes = time.getMinutes().toString();
-                            var months = new Array();
-                            months[0] = "Yanvar";
-                            months[1] = "Fevral";
-                            months[2] = "Mart";
-                            months[3] = "Aprel";
-                            months[4] = "May";
-                            months[5] = "İyun";
-                            months[6] = "İyul";
-                            months[7] = "Avqust";
-                            months[8] = "Sentyabr";
-                            months[9] = "Oktyabr";
-                            months[10] = "Noyabr";
-                            months[11] = "Dekabr";
-                            let month = months[time.getDay()]
-                            let date = day.concat(' ',month,'  ',hours,':',minutes);
-                            return date;
+                            return time.getDate()+" "+month[time.getMonth()]+" "+hours+":"+minutes;
                         }
                         $('.comments').append(`
                          <div class="blog-comments">
