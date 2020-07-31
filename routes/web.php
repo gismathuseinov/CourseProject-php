@@ -39,6 +39,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/delete', 'DeleteController@delete');
     Route::post('/edit', 'EditController@edit');
     Route::post('/accept', 'AcceptController@accept');
+    Route::post('/post/active','ActiveDeactiveController@active_deactive')->name('post.active');
 });
 Auth::routes();
 
