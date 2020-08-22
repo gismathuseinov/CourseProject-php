@@ -52,17 +52,29 @@ class Handler extends ExceptionHandler
      *
      * @throws \Throwable
      */
-    public function render($request, Throwable $exception)
+   public function render($request, Throwable $exception)
     {
-//
-//
-//
-//        if($exception instanceof NotFoundHttpException) {
-//
-//
-//        }
 
 
-        return parent::render($request, $exception);
+        if (env("APP_DEBUG")) {
+            return parent::render($request, $exception);
+        }
+        else {
+
+            //404
+            if ($exception instanceof NotFoundHttpException ||
+                $exception instanceof ModelNotFoundException) {
+                return response("not found", 404);
+            }
+
+            //500
+            $e = new HttpException(500);
+            if ($this->isHttpException($e)) {
+                return response("server error", 500);
+            }
+
+            return response("Something went wrong");
+        }
+
     }
 }
