@@ -13,7 +13,8 @@
                 </div>
                 <hr>
                 <div class="commenttitle">
-                    <h5>{{$complaint->complaint_title}}</h5>
+                                        <h5><a href="{{ route("post.view", ['id' => $complaint->id ]) }}">{{$complaint->complaint_title}}</a></h5>
+
                 </div>
                 <div class="yazi">
                     <span>{{$complaint->complaint_body}}</span>
@@ -23,10 +24,6 @@
             <br>
 
         @endforeach
-        <br><br>
-        <div class="pagination" style="margin-left: 40%; margin-top: 10%;">
-            {{$complaints ->links()}}
-        </div>
     </div>
     <br>
 @endsection
