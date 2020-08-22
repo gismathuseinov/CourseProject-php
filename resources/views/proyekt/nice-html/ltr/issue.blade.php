@@ -48,11 +48,9 @@
                                         <th>Şirkət</th>
                                         <th>Şikayət başlığı</th>
                                         <th>Şikayət</th>
-                                        <th>Y/H</th>
                                         <th>İcazə</th>
                                         <th>Düzənləmə</th>
                                         <th>Sil</th>
-                                        <th>Izleme</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -62,7 +60,6 @@
                                             <td>{{$value->company_name}}</td>
                                             <td>{{$value->complaint_title}}</td>
                                             <td>{{$value->complaint_body}}</td>
-                                            <td>{{$value->is_send}}</td>
                                             <td>
                                                 <button class="btn btn-success permission"><i class="fa fa-check"></i>
                                                 </button>
@@ -73,11 +70,6 @@
                                             </td>
                                             <td>
                                                 <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-primary see"><a href="adminsee/{{$value->id}}"><i
-                                                            style="text-decoration: none; color:white;"
-                                                            class="fa fa-eye"></i></a></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -138,7 +130,7 @@
                 $(this).parents('tr').find('td:eq(1)').html('<input style="width:100px;" type="text" name="name" value="' + company_name + '">')
                 $(this).parents('tr').find('td:eq(2)').html('<textarea name="title">' + complaint_title + '</textarea>')
                 $(this).parents('tr').find('td:eq(3)').html('<textarea cols="30" name="comment">' + complaint_body + '</textarea>')
-                $(this).parents('tr').find('td:eq(6)').html('<button class="btn btn-success save"><i class="fa fa-save"></i></button><button class="btn btn-warning cancel"><i class="fa fa-times"></i></button>')
+                $(this).parents('tr').find('td:eq(5)').html('<button class="btn btn-success save"><i class="fa fa-save"></i></button><button class="btn btn-warning cancel"><i class="fa fa-times"></i></button>')
                 $('tbody').on('click', '.save', function () {
                     var tr = $(this).parents('tr');
                     var id = $(this).parents('tr').attr('id');
@@ -159,7 +151,7 @@
                             tr.find('td:eq(1)').html(new_company_name);
                             tr.find('td:eq(2)').text(new_title);
                             tr.find('td:eq(3)').text(new_body);
-                            tr.find('td:eq(6)').html('<button class="btn btn-warning edit"><i class="fa fa-pencil"></i></button>');
+                            tr.find('td:eq(5)').html('<button class="btn btn-warning edit"><i class="fa fa-pencil"></i></button>');
                         }
                     })
                 })
