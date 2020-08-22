@@ -21,7 +21,6 @@ class CreateCommentsTable extends Migration
             $table->string('complaint_title');
             $table->string('complaint_body',10000);
             $table->integer('is_letted')->default(0);
-            $table->integer('is_send')->default(0);
             $table->integer('is_active')->default(1);
             $table->timestamps();
         });
