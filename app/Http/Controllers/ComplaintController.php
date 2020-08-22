@@ -20,7 +20,7 @@ class ComplaintController extends Controller
 
     public function complaint()
     {
-        $complaints = \App\Complaint::orderBy('id','desc')->paginate(6);
+        $complaints = \App\Complaint::orderBy('id','desc')->get();
         return view('proyekt.complaint', compact('complaints'));
     }
 
