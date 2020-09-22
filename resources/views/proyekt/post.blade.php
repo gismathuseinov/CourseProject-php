@@ -82,7 +82,7 @@
                         }
                         $('.comments').append(`
                          <div class="blog-comments">
-                             <div class="media">
+                             <div class="media" style="border:1px solid black;border-radius:3px;">
                                  <div class="media-body">
                                      <h6 s class="media-heading">${comment.user.name}<span class="time">${time()}</span></h6>
                                     <p>${comment.comments}</p>
