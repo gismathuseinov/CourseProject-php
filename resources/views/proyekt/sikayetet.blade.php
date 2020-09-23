@@ -26,12 +26,12 @@
             </div>
         </form>
         <div class="form-group buton">
-            <button style="margin-top:100px;" class="btn btn-success">Göndər</button>
+            <button style="margin-top:100px;" class="btn btn-success send">Göndər</button>
         </div>
     </div>
     <br>
     <script>
-        $('.btn-success').click(function () {
+        $('.send').click(function () {
 
             var company_name = $('input[name=company_name]').val();
             var email = $('input[name=email]').val();

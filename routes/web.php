@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,5 +43,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/post/active','ActiveDeactiveController@active_deactive')->name('post.active');
 });
 Auth::routes();
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
 
 

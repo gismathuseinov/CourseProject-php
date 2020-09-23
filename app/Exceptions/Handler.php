@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use HttpException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -31,14 +35,16 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Throwable  $exception
+     * @param Throwable $exception
      * @return void
      *
      * @throws \Exception
      */
     public function report(Throwable $exception)
     {
-
+        if (app()->bound('sentry') && $this->shouldReport($exception)) {
+            app('sentry')->captureException($exception);
+        }
 
         parent::report($exception);
     }
@@ -46,35 +52,34 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @param Throwable $exception
+     * @return Response
      *
-     * @throws \Throwable
+     * @throws Throwable
      */
    public function render($request, Throwable $exception)
     {
-
-
-        if (env("APP_DEBUG")) {
-            return parent::render($request, $exception);
-        }
-        else {
-
-            //404
-            if ($exception instanceof NotFoundHttpException ||
-                $exception instanceof ModelNotFoundException) {
-                return response("not found", 404);
-            }
-
-            //500
-            $e = new HttpException(500);
-            if ($this->isHttpException($e)) {
-                return response("server error", 500);
-            }
-
-            return response("Something went wrong");
-        }
+//        if (env("APP_DEBUG")) {
+//            return parent::render($request, $exception);
+//        }
+//        else {
+//
+//            //404
+//            if ($exception instanceof NotFoundHttpException ||
+//                $exception instanceof ModelNotFoundException) {
+//                return response("not found", 404);
+//            }
+//
+//            //500
+//            $e = new HttpException(500);
+//            if ($this->isHttpException($e)) {
+//                return response("server error", 500);
+//            }
+//
+//            return response("Something went wrong");
+//        }
+       return parent::render($request, $exception);
 
     }
 }

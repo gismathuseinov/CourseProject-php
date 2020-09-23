@@ -5,7 +5,7 @@
     <div class="container ifade col-12">
         <div class="col-6 search">
             <div class="text">
-                <h1> Şikayətinizin tək güvənli ünvanı <br> SizinŞikayət</h1>
+                <h1> Şikayətinizin tək güvənli ünvanı <br> şikayətimvar.com</h1>
 
             </div>
             <div class="search-div">
