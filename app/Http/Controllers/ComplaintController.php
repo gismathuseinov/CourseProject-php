@@ -11,16 +11,17 @@ class ComplaintController extends Controller
 {
     public function post(Request $request, int $id)
     {
-        $post = \App\Complaint::findOrFail($id);
+        $post = \App\Complaint::find($id);
 
         $comments = PostComment::where('complaint_id', $id)->orderBy('id', 'desc')->get();
-
-        return view('proyekt.post', compact(['post', 'comments']));
+        return view('web.single',compact(['post', 'comments']));
+//        return view('web.post', compact(['post', 'comments']));
     }
 
     public function complaint()
     {
         $complaints = \App\Complaint::orderBy('id','desc')->get();
+//        return view('web.single')
         return view('proyekt.complaint', compact('complaints'));
     }
 

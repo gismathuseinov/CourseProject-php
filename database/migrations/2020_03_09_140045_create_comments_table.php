@@ -16,7 +16,6 @@ class CreateCommentsTable extends Migration
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('email');
             $table->string('company_name');
             $table->string('complaint_title');
             $table->string('complaint_body',10000);

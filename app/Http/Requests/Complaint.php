@@ -30,7 +30,7 @@ class Complaint extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'email', 'min:8', 'max:70'],
+//            'email' => ['required', 'email', 'min:8', 'max:70'],
             'company_name' => ['required','min:3','max:70'],
             'complaint_title' => ['required','string','min:10','max:300'],
             'complaint_body' => ['required','string','min:50','max:10000'],

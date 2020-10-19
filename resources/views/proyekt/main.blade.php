@@ -20,14 +20,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="{{ asset('Project/css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('Project/css/index2.css') }}">
     <link rel="stylesheet" href="{{ asset('Project/css/search.css') }}">
     <script src="{{asset('Project/js/search.js')}}"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
-    <title>Şikayətet.az &nbsp;&nbsp;&nbsp; Şikayətinizin ən güvənli ünvanı </title>
+    <title>Şikayətinizin ən güvənli ünvanı </title>
 </head>
 <body>
-
+{{--style="background-color:#ecf0f1"--}}
 <header>
     <div class="header" style="background-color:#ecf0f1">
         @auth()
@@ -44,6 +45,8 @@
                             &nbsp;&nbsp;{{ Auth::user()->name }} <span class="caret"></span>
                         </button>
                         <div class="dropdown-menu drpdwn" aria-labelledby="dropdownMenu2">
+                            <a class="dropdown-item btn btn-primary " href={{route('user.posts')}}>Şikayətlərim</a>
+                            <a class="dropdown-item btn btn-primary " href={{route('user.profile')}}>Profil</a>
                             <a class="dropdown-item btn btn-primary " href={{route('logout')}}>Çıxış</a>
                             @if (\Illuminate\Support\Facades\Auth::id()==1)
                                 <a class="dropdown-item btn btn-primary " href={{route('admin.dashboard')}}>Admin
@@ -55,7 +58,7 @@
             </ul>
         @endauth
         @guest()
-            <a href="index"><img src="{{asset('Project/img/logo2.png')}}" alt=""></a>
+            <a href="{{ route('site.index') }}"><img src="{{asset('Project/img/logo2.png')}}" alt=""></a>
             <ul>
                 <li><a href="{{route('site.index')}}" class="menu">Ana səhifə</a></li>
                 <li><a href="{{route('about')}}" class="menu">Haqqımızda</a></li>

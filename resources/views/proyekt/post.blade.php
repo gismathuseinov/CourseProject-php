@@ -97,7 +97,7 @@
         //send_comments
         $('.btn-outline-info').click(function () {
             var comments = $('#comment').val();
-            if (comments == '') {
+            if (comments === '') {
                 alert("Zəhmət olmasa  mesaj yazın!");
             } else {
                 $.ajax({

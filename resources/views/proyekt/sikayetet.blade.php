@@ -9,10 +9,10 @@
                     <input type="text" class="form-control" id="company_name" name="company_name"
                            placeholder="şikayətçi olduğunuz firma və ya şirkət adı">
                 </div>
-                <div class="form-group">
-                    <label for="sikayet">Emailiniz</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                </div>
+{{--                <div class="form-group">--}}
+{{--                    <label for="sikayet">Emailiniz</label>--}}
+{{--                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">--}}
+{{--                </div>--}}
                 <div class="form-group">
                     <label for="complainetname">Şikayət Başlığı</label>
                     <input type="text" class="form-control" id="complaint_title" name="complaint_title"
@@ -34,15 +34,14 @@
         $('.send').click(function () {
 
             var company_name = $('input[name=company_name]').val();
-            var email = $('input[name=email]').val();
+            // var email = $('input[name=email]').val();
             var complaint_title = $('input[name=complaint_title]').val();
             var complaint_body = $('textarea[name=complaint_body]').val();
             $.ajax({
                 type: "POST",
-                url: '/create_post',
+                url: '{{ route('write.post') }}',
                 data: {
                     'company_name': company_name,
-                    'email': email,
                     'complaint_title': complaint_title,
                     'complaint_body': complaint_body,
                     "_token": "{{ csrf_token() }}",
@@ -50,7 +49,7 @@
                 success: function (response) {
                     toastr.success(response.message);
                     $('input[name=company_name]').val("");
-                    $('input[name=email]').val("");
+                    // $('input[name=email]').val("");
                     $('input[name=complaint_title]').val("");
                     $('textarea[name=complaint_body]').val("");
                 },

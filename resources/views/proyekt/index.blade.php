@@ -14,16 +14,16 @@
                     <i class="fa fa-search"></i>
                 </a>
             </div>
-            @guest
-                <div class="Btn">
-                    <button class="btn btn-success writecomment"><a style="color: white;text-decoration: none;" href="{{ route('login') }}">Şikayət et</a></button>
-                </div>
-            @endguest
-            @auth()
+{{--            @guest--}}
+{{--                <div class="Btn">--}}
+{{--                    <button class="btn btn-success writecomment"><a style="color: white;text-decoration: none;" href="{{ route('login') }}">Şikayət et</a></button>--}}
+{{--                </div>--}}
+{{--            @endguest--}}
+{{--            @auth()--}}
                 <div class="Btn">
                     <button class="btn btn-success writecomment"><a style="color: white;text-decoration: none;" href="{{ route('write.complaint') }}">Şikayət et</a></button>
                 </div>
-            @endauth
+{{--            @endauth--}}
         </div>
         <br>
         <div class="col-6 yazi">

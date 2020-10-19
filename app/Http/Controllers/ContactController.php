@@ -9,7 +9,7 @@ class ContactController extends Controller
 {
     public function contact()
     {
-        return view('proyekt.contactus');
+        return view('web.contact');
     }
 
     public function send(Feedback $request)
