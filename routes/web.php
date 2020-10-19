@@ -13,23 +13,26 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'IndexController@main');
-Route::get('/index', 'IndexController@index')->name('site.index');
-Route::get('/about', 'IndexController@about')->name('about');
-Route::get('/contact', 'ContactController@contact')->name('contact');
-Route::get('/complaint', 'ComplaintController@complaint')->name('complaint');
-Route::post('/search', 'SearchController@search')->name('search');
-Route::get('/sikayet', 'IndexController@sikeytet')->name('write.complaint');
-Route::get('/logout', 'Signout@exit')->name('logout');
-Route::get('/post/view/{id}', 'ComplaintController@post')->name("post.view");
-Route::post('/send', 'ContactController@send');
+//Route::prefix('v1')->group(function (){
+    Route::get('/index','IndexController@index')->name('site.index' );
+    Route::get('/contact','ContactController@contact')->name('contact');
+    Route::get('/about', 'IndexController@about')->name('about');
+    Route::get('/complaint', 'ComplaintController@complaint')->name('complaint');
+    Route::get('/write/complaint', 'IndexController@write')->name('write.complaint')->middleware('auth');
+    Route::get('/post/view/{id}', 'ComplaintController@post')->name("post.view");
+    Route::post('/send', 'ContactController@send')->name('send');
+//});
 
 Route::get('/post/{post_id}/comments', 'IndexController@get_post_comments')->name('post.get.comments');
+Route::post('/search', 'SearchController@search')->name('search');
+
 
 Route::middleware(['auth'])->group(function () {
-    Route::post('/create_post', 'ComplaintController@create_post');
+    Route::post('/create_post', 'ComplaintController@create_post')->name('write.post');
     Route::post('/post/{post_id}/comment/create', 'CommentController@comment_create')->name('post.create.comment');
     Route::post('/check', 'CheckController@check');
+    Route::get('/user/posts','GetUserPost@getUserPost')->name('user.posts');
+    Route::get('/logout', 'Signout@exit')->name('logout');
 });
 //admin
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -43,8 +46,4 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/post/active','ActiveDeactiveController@active_deactive')->name('post.active');
 });
 Auth::routes();
-Route::get('/debug-sentry', function () {
-    throw new Exception('My first Sentry error!');
-});
-
 
