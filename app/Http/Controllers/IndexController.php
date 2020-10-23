@@ -10,12 +10,6 @@ class IndexController extends Controller
 {
     public function index(Request $request)
     {
-        /*$userCount = User::count();
-
-        $issueCount = Complaint::where('is_letted', 1)
-            ->where('is_active', 1)
-            ->count();*/
-
         $complaints = Complaint::where('is_letted', 1)
             ->where('is_active', 1)
             ->orderBy('id', 'desc')

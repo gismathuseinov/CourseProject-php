@@ -60,7 +60,7 @@
     <div class="d-flex flex-row" id="posts" style="width: 100%;height: 580px;margin-top:0.5%;">
         <div class="d-flex post" id="post" style="width: 944px!important;margin-top: 8%">
             @if(isset($complaints))
-                @foreach($complaints ?? '' as $key=>$complaint)
+                @foreach($complaints  as $key=>$complaint)
                     <div data-bs-hover-animate="pulse" style="height: 230px;width: 377px!important;margin-left: 6%;margin-top: 50px;background: rgba(6,76,21,0.99);border-radius: 20px;">
                         <h6 style="margin-top: 10px;color: rgb(165,167,179);height: 40px;font-size: 15px;padding-top: 3%;padding-left: 15%;">
                             <a style="text-decoration: none;color: #e5e5e5" href="{{ route("post.view", ['id' => $complaint->id ]) }}">{{ $complaint->company_name }}</a>
@@ -102,7 +102,7 @@
             {{$complaints->links()}}
         </div>
 
-
+    @if(isset($complaint))
     <script>
         $('.search').click(function () {
             let data = $('input[name=searchbar]').val();
@@ -116,7 +116,12 @@
                 success: function (response) {
                     if(response.message==='success') {
                         $('input[name=searchbar]').val(' ');
+                        if (response.results.length===0){
+                            $('.post').html(' ')
+                            $('.post').append(`<div>netice tapilmadi</div>`);
+                        }
                         $('.post').html('');
+                        $('.pagination').remove()
                         response.results.forEach(function (result) {
 
                             function time(){
@@ -140,33 +145,27 @@
 
                                 return time.getDate()+" "+month[time.getMonth()]+" "+hours+":"+minutes;
                             }
-
                             $('.post').append(`
                              <div class="d-flex" id="post" style="width: 944px!important;margin-top: 8%">
-
-                            <div data-bs-hover-animate="pulse" style="height: 230px;width: 377px!important;margin-left: 6%;margin-top: 50px;background: rgba(6,76,21,0.99);border-radius: 20px;">
-                                <h6 style="margin-top: 10px;color: rgb(165,167,179);height: 40px;font-size: 15px;padding-top: 3%;padding-left: 15%;">
-                                    <a style="text-decoration: none;color: #e5e5e5" href="{{ route("post.view", ['id' => $complaint->id ]) }}">${result.company_name}</a>
-                        </h6>
-                        <div class="d-flex flex-row" id="name" style="height: 30px;width: 100%;margin-top: 1%!important;">
-                        <span style="border-color: rgb(239,241,244);color: rgb(248,248,248);margin-left: 15%;">
-                           ${result.user.name}<br><br>
-                        </span>
-                            <span style="color: rgb(247,247,247);font-size: 12px;margin-left: 10%;margin-top: 2%;">${time()}</span>
-                        </div>
-                        <div
-                            id="text" style="height: 100px;margin-top: 1.3%;">
-                            <h1 style="font-size: 15px;color: rgb(255,255,255);width: 80%;margin-left: 10%;">${result.complaint_body}</h1>
-                        </div>
-                        <span style="margin-left: 10%;color: rgb(255,255,255);padding-top: 10%;"><i class="fa fa-eye" style="color: rgb(251,251,251);"></i>&nbsp;${result.comments().count()} rəy<br></span>
-                    </div>
+                                <div data-bs-hover-animate="pulse" style="height: 230px;width: 377px!important;margin-left: 6%;margin-top: 50px;background: rgba(6,76,21,0.99);border-radius: 20px;">
+                                    <h6 style="margin-top: 10px;color: rgb(165,167,179);height: 40px;font-size: 15px;padding-top: 3%;padding-left: 15%;">
+                                        <a style="text-decoration: none;color: #e5e5e5" href="{{ route("post.view", ['id' => $complaint->id ]) }}">${result.company_name}</a>
+                                    </h6>
+                                    <div class="d-flex flex-row" id="name" style="height: 30px;width: 100%;margin-top: 1%!important;">
+                                        <span style="border-color: rgb(239,241,244);color: rgb(248,248,248);margin-left: 15%;">${result.user.name}<br><br></span>
+                                        <span style="color: rgb(247,247,247);font-size: 12px;margin-left: 10%;margin-top: 2%;">${time()}</span>
+                                    </div>
+                                    <div id="text" style="height: 100px;margin-top: 1.3%;">
+                                        <h1 style="font-size: 15px;color: rgb(255,255,255);width: 80%;margin-left: 10%;">${result.complaint_body.substring(0,170)}</h1>
+                                    </div>
+                                </div>
                             </div>
-`)
-                        });
+                            `)
+                        })
                     }
-
                 }
             })
         });
     </script>
+    @endif
 @endsection

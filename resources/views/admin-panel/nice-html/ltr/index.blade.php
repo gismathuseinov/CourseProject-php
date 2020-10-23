@@ -1,4 +1,4 @@
-@extends('proyekt.nice-html.ltr.main')
+@extends('admin-panel.nice-html.ltr.main')
 @section('main')
     <style>
         .statistic-block {

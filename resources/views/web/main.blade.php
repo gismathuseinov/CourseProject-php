@@ -49,6 +49,9 @@
                     <li class="nav-item"><a class="nav-link text-capitalize text-warning" data-bs-hover-animate="pulse"
                                             uk-scroll="offset:100" href="{{ route('contact') }}"
                                             style="color: green!important;text-align: center;">ƏLAQƏ</a></li>
+                    <li class="nav-item"><a class="nav-link text-capitalize text-warning" data-bs-hover-animate="pulse"
+                                            uk-scroll="offset:100" href="{{ route('write.complaint') }}"
+                                            style="color: green!important;text-align: center;">ŞİKAYƏT YAZ</a></li>
                     @guest()
                         <li class="nav-item">
                             <button class="btn btn-dark" data-bs-hover-animate="pulse" type="button"

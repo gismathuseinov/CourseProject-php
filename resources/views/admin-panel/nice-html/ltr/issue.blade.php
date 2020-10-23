@@ -1,4 +1,4 @@
-@extends('proyekt.nice-html.ltr.main')
+@extends('admin-panel.nice-html.ltr.main')
 @section('main')
     <!-- ============================================================== -->
     <!-- End Left Sidebar - style you can find in sidebar.scss  -->
