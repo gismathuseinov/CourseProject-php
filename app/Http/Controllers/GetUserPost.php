@@ -9,24 +9,19 @@ use Illuminate\Support\Facades\Auth;
 
 class GetUserPost extends Controller
 {
-    public function getUserPost()
+    public function complaints()
     {
-        $user = User::find(Auth::id())->get();
         $userPosts =  Complaint::where('user_id', Auth::id())->get();
-//       dd($userPosts->complaint_title);
-        return view('web.account',compact(['userPosts','user']));
+        return view('template.dashboard-applied',compact('userPosts'));
 
     }
 
-    /*public function profile()
+    public function index()
     {
         $user = User::select('name', 'email')->where('id', Auth::id())->get();
         $userPostCount = Complaint::where('user_id', Auth::id())->get()->count();
         $userCommentCount = PostComment::where('user_id', Auth::id())->get()->count();
-        return response()->json([
-            'user' => $user,
-            'Post count' => $userPostCount,
-            'Comment count' => $userCommentCount
-        ]);
-    }*/
+
+        return view('template.dashboard',compact(['user','userPostCount','userPostCount']));
+    }
 }

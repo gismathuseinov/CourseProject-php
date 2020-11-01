@@ -14,15 +14,13 @@ class ComplaintController extends Controller
         $post = \App\Complaint::find($id);
 
         $comments = PostComment::where('complaint_id', $id)->orderBy('id', 'desc')->get();
-        return view('web.single',compact(['post', 'comments']));
-//        return view('web.post', compact(['post', 'comments']));
+        return view('template.job-details',compact(['post', 'comments']));
     }
 
-    public function complaint()
+    public function index()
     {
-        $complaints = \App\Complaint::orderBy('id','desc')->get();
-//        return view('web.single')
-        return view('proyekt.complaint', compact('complaints'));
+        $complaints = \App\Complaint::orderBy('id','desc')->paginate(10);
+        return view('template.job-listing',compact('complaints'));
     }
 
     public function create_post(Complaint $complaint)

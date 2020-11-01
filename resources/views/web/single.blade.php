@@ -49,7 +49,7 @@
                     response.comments.forEach(function (comment) {
                         function time() {
                             let time = new Date(Date.parse(comment.created_at));
-                            var month = new Array();
+                            var month = [];
                             month[0] = "Yanvar";
                             month[1] = "Fevral";
                             month[2] = "Mart";
@@ -101,7 +101,7 @@
                         "_token": "{{ csrf_token() }}",
                     },
                     success: function (response) {
-                        if (response.status == 'success') {
+                        if (response.status === 'success') {
                             $('input[name=comment]').val("");
                         }
                     }

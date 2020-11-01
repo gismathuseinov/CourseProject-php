@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Complaint;
 use App\PostComment;
+use App\User;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -13,31 +14,38 @@ class IndexController extends Controller
         $complaints = Complaint::where('is_letted', 1)
             ->where('is_active', 1)
             ->orderBy('id', 'desc')
-            ->paginate(3);
-
+            ->paginate(4);
+        $userCount = User::all()->count();
+        $postCount = Complaint::where('is_letted', 1)->where('is_active', 1)->get()->count();
 
         $postsID = Complaint::select('id')->get();
-        if ($postsID->count() > 5) {
+//        if ($postsID->count() > 4) {
             foreach ($postsID as $postID) {
                 $commentsCount[] = PostComment::where('complaint_id', $postID['id'])->select('complaint_id', 'id')->get();
             }
-            if (count($commentsCount[0]) !=0 && count($commentsCount[1])!=0 && count($commentsCount[2]) != 0) {
+//            dd($commentsCount);
+            if (count($commentsCount[0]) != 0 && count($commentsCount[1]) != 0 ) {
                 rsort($commentsCount);
                 $output = array_slice($commentsCount, 0, 3);
+//                dd($output);
                 foreach ($output as $key => $post) {
                     $postId = $post[$key]['complaint_id'];
-                    $posts[] = Complaint::where('id', $postId)->get();
+                    $posts[] = Complaint::where('id', $postId)->get()->toArray();
+
                 }
-                return view('web.index', compact(['complaints', 'posts']))->render();
-            }
+//                dd($posts[1][1]);
+//                dd();
+                return view('template.index', compact(['complaints', 'posts', 'postCount', 'userCount']))->render();
+
+//            }
 
         }
-        return view('web.index', compact('complaints'));
+        return view('template.index', compact(['complaints', 'userCount', 'postCount']));
     }
 
     public function about()
     {
-        return view('web.about');
+        return view('template.about');
     }
 
     public function main()
@@ -47,7 +55,7 @@ class IndexController extends Controller
 
     public function write()
     {
-        return view('web.write');
+        return view('template.post-job');
     }
 
     public function get_post_comments(int $post_id)
