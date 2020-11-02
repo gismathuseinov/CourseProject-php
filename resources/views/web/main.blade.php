@@ -42,16 +42,16 @@
                 <ul class="nav navbar-nav ml-auto" style="margin-top:13px;">
                     <li class="nav-item"><a class="nav-link text-capitalize text-warning" data-bs-hover-animate="pulse"
                                             uk-scroll="offset:50" href="{{ route('site.index') }}"
-                                            style="color: green!important;text-align: center;">ANA SƏHİFƏ</a></li>
+                                            style="color: green!important;text-align: center;">Ana Səhifə</a></li>
                     <li class="nav-item"><a class="nav-link text-capitalize text-warning" data-bs-hover-animate="pulse"
                                             uk-scroll="offset:100" href="{{ route('about') }}"
-                                            style="color: green!important;text-align: center;">HAQQIMIZDA</a></li>
+                                            style="color: green!important;text-align: center;">Haqqımızda</a></li>
                     <li class="nav-item"><a class="nav-link text-capitalize text-warning" data-bs-hover-animate="pulse"
                                             uk-scroll="offset:100" href="{{ route('contact') }}"
-                                            style="color: green!important;text-align: center;">ƏLAQƏ</a></li>
+                                            style="color: green!important;text-align: center;">Əlaqə</a></li>
                     <li class="nav-item"><a class="nav-link text-capitalize text-warning" data-bs-hover-animate="pulse"
                                             uk-scroll="offset:100" href="{{ route('write.complaint') }}"
-                                            style="color: green!important;text-align: center;">ŞİKAYƏT YAZ</a></li>
+                                            style="color: green!important;text-align: center;">Şikayət yaz</a></li>
                     @guest()
                         <li class="nav-item">
                             <button class="btn btn-dark" data-bs-hover-animate="pulse" type="button"

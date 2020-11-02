@@ -17,9 +17,5 @@ class PostComment extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
-//    public function sum()
-//    {
-//        return $this->hasMany(PostComment::class)
-//            ->selectRaw()
-//    }
+
 }

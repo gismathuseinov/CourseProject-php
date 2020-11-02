@@ -40,7 +40,7 @@
 	26.0 Contact Style
 	27.0 Payment Style
 	28.0 Account Style
-	
+
 -------------------------------------------*/
 /*----------------------------------------------
 	1.0 General Style
@@ -4935,7 +4935,7 @@ form {
 }
 
 .section-header h2 {
-  font-family: #headerFont;
+  font-family: Arial;
   font-weight: 600;
   font-size: 2.8rem;
 }

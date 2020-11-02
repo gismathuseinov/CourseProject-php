@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#FFF" d="M238.988 116.624c2.854 8.233-.479 17.55-8.096 19.62-17.138 5.694-27.611 19.67-39.037 33.646-19.043 23.293-32.373 53.832-59.509 65.738-5.871 2.588-11.727 3.966-17.512 4.372-43.425-1.266-91.983-26.63-111.978-69.593C.476 165.231 0 160.055 0 154.361c.475-3.106.475-6.728 1.428-9.835 1.428-3.105 2.38-5.693 4.284-8.281 1.905-2.07 3.333-4.141 5.713-5.694 15.234-9.317 31.897-15.529 44.569-28.382 5.578-5.78 9.227-13.028 9.227-22.863C65.22 48.25 63.317-1.96 102.857.06c5.89.175 12.205 1.352 18.962 3.82 13.833 6.915 20.75 20.208 25.517 35.2 1.589 4.998 2.94 10.185 4.228 15.382 4.11 15.528 6.966 36.75 23.152 41.927 19.52 6.211 41.894-2.588 59.257 11.047 2.367 2.726 4.093 5.807 5.015 9.189"/>
+        <path stroke="#4C698C" stroke-linecap="round" stroke-width="2" d="M174.6 91.2H63"/>
+        <g transform="translate(68.4 12)">
+            <rect width="99.6" height="33.6" x=".6" fill="#FFF" stroke="#4C698C" rx="10"/>
+            <path fill="#45DA6F" stroke="#45DA6F" stroke-linejoin="round" d="M79.258.5H78.6v-1h11.6c5.799 0 10.5 4.701 10.5 10.5v11.6h-1v-.658a9.5 9.5 0 0 0-2.782-6.717L85.975 3.282A9.5 9.5 0 0 0 79.258.5z"/>
+            <rect width="21" height="6" x="9" y="8.4" fill="#4C698C" rx="3"/>
+            <rect width="82.8" height="6" x="9" y="19.2" fill="#4C698C" rx="3"/>
+            <path stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M92.555 5.27l1.147 1.147 2.453-2.453"/>
+        </g>
+        <g transform="translate(56.4 51.6)">
+            <rect width="99.6" height="33.6" x=".6" fill="#FFF" stroke="#4C698C" rx="10"/>
+            <path fill="#FF5454" stroke="#FF5454" stroke-linejoin="round" d="M79.258.5H78.6v-1h11.6c5.799 0 10.5 4.701 10.5 10.5v11.6h-1v-.658a9.5 9.5 0 0 0-2.782-6.717L85.975 3.282A9.5 9.5 0 0 0 79.258.5z"/>
+            <path stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M93.702 6.417l2.453-2.453M96.155 6.417l-2.453-2.453"/>
+            <rect width="21" height="6" x="9" y="8.4" fill="#4C698C" rx="3"/>
+            <rect width="82.8" height="6" x="9" y="19.2" fill="#4C698C" rx="3"/>
+        </g>
+        <g opacity=".8" transform="translate(68.4 97.2)">
+            <rect width="99.6" height="33.6" x=".6" fill="#FFF" stroke="#4C698C" rx="10"/>
+            <rect width="21" height="6" x="9" y="8.4" fill="#4C698C" rx="3"/>
+            <rect width="82.8" height="6" x="9" y="19.2" fill="#4C698C" rx="3"/>
+        </g>
+        <g opacity=".4" transform="translate(68.4 136.8)">
+            <rect width="99.6" height="33.6" x=".6" fill="#FFF" stroke="#4C698C" rx="10"/>
+            <rect width="21" height="6" x="9" y="8.4" fill="#4C698C" rx="3"/>
+            <rect width="82.8" height="6" x="9" y="19.2" fill="#4C698C" rx="3"/>
+        </g>
+        <g opacity=".1" transform="translate(68.4 176.4)">
+            <rect width="99.6" height="33.6" x=".6" fill="#FFF" stroke="#4C698C" rx="10"/>
+            <rect width="21" height="6" x="9" y="8.4" fill="#4C698C" rx="3"/>
+            <rect width="82.8" height="6" x="9" y="19.2" fill="#4C698C" rx="3"/>
+        </g>
+    </g>
+</svg>

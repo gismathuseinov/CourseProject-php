@@ -2,8 +2,6 @@
 @section('main')
 
 
-
-    <!-- Job Listing -->
     <div class="alice-bg section-padding-bottom">
         <div class="container">
             <div class="row no-gutters">
@@ -12,42 +10,37 @@
                         <div style="margin-right: 10%" class="filtered-job-listing-wrapper">
                             <div class="job-view-controller-wrapper">
                                 <div class="showing-number">
-                                    <span>Butun sikayetler</span>
+                                    <span>Bütün şikayətlər</span>
                                 </div>
                             </div>
                             <div class="job-filter-result">
                                 @if(isset($complaints))
                                     @foreach($complaints as $key => $complaint)
-                                        <div class="job-list">
-                                            <div class="body">
-
-                                                <div class="content">
-                                                    <h4><a>{{$complaint->company_name}}</a></h4>
-                                                    <span>{{Illuminate\Support\Str::limit($complaint->complaint_body,100)}}</span>
-                                                    <div class="info">
-                                                        <span class="company"><a href="#"><i data-feather="user"></i>{{$complaint->user->name}}</a></span>
-                                                        <span class="office-location"><a><i
-                                                                    data-feather="message-square"></i>{{$complaint->comments()->count()}}</a></span>
-                                                        <span class="job-type temporary"><a><i
-                                                                    data-feather="clock"></i>{{date('D-h:i', strtotime($complaint->created_at))}}</a></span>
+                                        <div class="col-lg-10" style="margin-left: 8%!important;">
+                                            <div class="job-list half-grid">
+                                                <div class="body">
+                                                    <div class="content">
+                                                        <h4><a>{{$complaint->complaint_title}}</a></h4>
+                                                        <span>{{Illuminate\Support\Str::limit($complaint->complaint_body,80)}}</span>
+                                                        <div class="info">
+                                                            <span class="company"><a><i data-feather="user"></i>{{ $complaint->user->name }}</a></span>
+                                                            <span class="office-location"><a><i
+                                                                        data-feather="message-square"></i>{{$complaint->comments()->count()}}</a></span>
+                                                            <span class="job-type temporary"><a><i
+                                                                        data-feather="clock"></i>{{date('D-h:i', strtotime($complaint->created_at))}}</a></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="more1">
+                                                        <div class="buttons mt-5">
+                                                            <a href="{{ route("post.view", ['id' => $complaint->id ]) }}"
+                                                               class="button btn btn-lg btn-success">Keçid et</a>
+                                                        </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="more">
-                                                    <div class="buttons">
-                                                        <a href="{{ route("post.view", ['id' => $complaint->id ]) }}"
-                                                           class="button">kecid et</a>
-                                                    </div>
-                                                </div>
-
                                             </div>
-
                                         </div>
                                     @endforeach
                                 @endif
-                            </div>
-                            <div class="pagination-list text-center">
-                                {{--                                {{$complaints->links()}}--}}
                             </div>
                         </div>
 

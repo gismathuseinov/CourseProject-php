@@ -32,7 +32,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600%7CRoboto:300i,400,500" rel="stylesheet">
@@ -58,33 +59,29 @@
                     <div class="header-top-toggler">
                         <div class="header-top-toggler-button"></div>
                     </div>
-                    @auth()
-                        <div class="top-nav">
-                            <div class="dropdown header-top-account">
-                                <a href="#" class="account-button">Hesab</a>
-                                <div class="account-card">
-                                    <div class="header-top-account-info">
-                                        <div class="account-body">
-                                            <h5><a href="#">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
-                                            </h5>
-                                            <span
-                                                class="mail">{{ \Illuminate\Support\Facades\Auth::user()->email }}</span>
-                                        </div>
+                    <div class="top-nav">
+                        <div class="dropdown header-top-account">
+                            <a href="" style="font-size: 20px;" class="account-button">Hesab</a>
+                            <div class="account-card">
+                                <div class="header-top-account-info">
+                                    <div class="account-body">
+                                        <h5><a>{{ auth()->user()->name }}</a></h5>
+                                        <span class="mail">{{ auth()->user()->email }}</span>
                                     </div>
-                                    <ul class="account-item-list">
-                                        <li><a href="{{ route('user.dashboard') }}"><span
-                                                    class="ti-user"></span>Hesab</a></li>
-                                        <li><a href="{{route('logout')}}"><span class="ti-power-off"></span>Çıxış</a>
-                                        @if(\Illuminate\Support\Facades\Auth::id()===1)
-                                            <li><a href="{{route('admin.dashboard')}}"><span
-                                                        class="ti-power-off"></span>Admin Panel</a>
-                                                @endif
-                                            </li>
-                                    </ul>
                                 </div>
+                                <ul class="account-item-list">
+                                    <li><a href="{{ route('user.dashboard') }}"><span class="ti-user"></span>Hesab</a>
+                                    </li>
+                                    @if(auth()->id()===1)
+                                        <li><a href="{{ route('admin.dashboard') }}"><span class="ti-settings"></span>Admin
+                                                Panel</a></li>
+                                    @endif
+                                    <li><a href="{{ route('logout') }}"><span class="ti-power-off"></span>Log Out</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    @endauth
+                    </div>
                 </div>
                 <nav class="navbar navbar-expand-lg cp-nav-2">
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -94,19 +91,15 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav">
-                            <li class="menu-item active"><a title="Home" href="{{ route('site.index') }}">Ana Səhifə</a></li>
-                            <li class="menu-item active"><a title="Home" href="{{ route('site.complaints') }}">Bütün
-                                    Şikayətlər</a></li>
-                            <li class="menu-item dropdown">
-                                <a title="" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true"
-                                   aria-expanded="false">Əlaqə</a>
-                                <ul class="dropdown-menu">
-                                    <li class="menu-item"><a href="{{route('site.about')}}">About Us</a></li>
-                                    <li class="menu-item"><a href="{{ route('site.how.work') }}">How It Works</a></li>
-                                    <li class="menu-item"><a href="{{ route('site.contact') }}">Contact Us</a></li>
-                                </ul>
+                            <li class="menu-item active"><a title="Home" href="{{ route('site.index') }}">Ana Səhifə</a>
                             </li>
-                            <li class="menu-item post-job"><a href="{{ route('write.complaint') }}"><i class="fas fa-plus"></i>Post a Job</a>
+                            <li class="menu-item active"><a title="Home" href="{{ route('site.complaints') }}">
+                                    Şikayətlər</a></li>
+                            <li class="menu-item"><a href="{{route('site.about')}}">Haqqımızda</a></li>
+                            <li class="menu-item"><a href="{{ route('site.contact') }}">Əlaqə</a></li>
+{{--                            </li>--}}
+                            <li class="menu-item post-job"><a href="{{ route('write.complaint') }}"><i
+                                        class="fas fa-plus"></i>Şikayət Yaz</a>
                             </li>
                         </ul>
                     </div>
@@ -119,18 +112,7 @@
 <div class="alice-bg padding-top-70 padding-bottom-70">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <div class="breadcrumb-area">
-                    <h1>sikayetler</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{route('site.index')}}">Ana Səhifə</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"></li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="breadcrumb-form">
                     <form action="#">
                         <input type="text" placeholder="Enter Keywords">
@@ -145,81 +127,44 @@
 @yield('main')
 
 <footer class="footer-bg">
-    <div class="footer-top border-bottom section-padding-top padding-bottom-40">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="footer-logo">
-                        <a href="#">
-                            <img src="{{asset('template/images/logo.png')}}"
-                                 style="width: 164px!important;height: 50px!important" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="footer-social">
-                        <ul class="social-icons">
-                            <li><a href="#"><i data-feather="facebook"></i></a></li>
-                            <li><a href="#"><i data-feather="twitter"></i></a></li>
-                            <li><a href="#"><i data-feather="linkedin"></i></a></li>
-                            <li><a href="#"><i data-feather="instagram"></i></a></li>
-                            <li><a href="#"><i data-feather="youtube"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-widget-wrapper padding-bottom-60 padding-top-80">
+    <div class="footer-widget-wrapper padding-top-60">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-sm-6">
                     <div class="footer-widget widget-about">
                         <h4>About Us</h4>
                         <div class="widget-inner">
-                            <p class="description">There are many variations of passages of Lorem Ipsum available, but
-                                the majority have suffered alteration in some form, by injected humour.</p>
-                            <span class="about-contact"><i data-feather="phone-forwarded"></i>+8 246-345-0698</span>
-                            <span class="about-contact"><i data-feather="mail"></i>supportmail@gmail.com</span>
+                            <p class="description">Bu sayt Azərbaycanda müştəri, istehlakçı məmnuniyyəti və şikayətləri
+                                əsasında ölkədə demək olar ki, bütün sahələr üzrə fəaliyyət göstərən şirkət və
+                                markaların reytinqini təyin edə bilmək məqsədilə yaradılmış internet platformasıdır.</p>
+                            <span class="about-contact"><i data-feather="phone-forwarded"></i>+994 50 500 55 50</span>
+                            <span class="about-contact"><i data-feather="mail"></i>support@sikayetvar.com</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 offset-lg-1 col-sm-6">
+                <div class="col-lg-4 offset-lg-1 col-sm-6">
                     <div class="footer-widget footer-shortcut-link">
-                        <h4>Information</h4>
+                        <h4>İnformasiya</h4>
                         <div class="widget-inner">
                             <ul>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms &amp; Conditions</a></li>
+                                <li><a href="{{ route('site.about') }}">Haqqımızda</a></li>
+                                <li><a href="{{ route('site.contact') }}">Əlaqə</a></li>
+                                <li><a href="{{ route('login') }}">Daxil ol/Qeydiyyat</a></li>
+                                <li><a href="{{ route('site.complaints') }}">Şikayətlər</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-sm-6">
                     <div class="footer-widget footer-shortcut-link">
-                        <h4>Job Seekers</h4>
+                        <h4>Bizi İzləyin</h4>
                         <div class="widget-inner">
-                            <ul>
-                                <li><a href="#">Create Account</a></li>
-                                <li><a href="#">Career Counseling</a></li>
-                                <li><a href="#">My Oficiona</a></li>
-                                <li><a href="#">FAQ</a></li>
-                                <li><a href="#">Video Guides</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <div class="footer-widget footer-shortcut-link">
-                        <h4>Employers</h4>
-                        <div class="widget-inner">
-                            <ul>
-                                <li><a href="#">Create Account</a></li>
-                                <li><a href="#">Products/Service</a></li>
-                                <li><a href="#">Post a Job</a></li>
-                                <li><a href="#">FAQ</a></li>
+                            <ul class="social-icons">
+                                <li><a href="#"><i data-feather="facebook"></i></a></li>
+                                <li><a href="#"><i data-feather="twitter"></i></a></li>
+                                <li><a href="#"><i data-feather="linkedin"></i></a></li>
+                                <li><a href="#"><i data-feather="instagram"></i></a></li>
+                                <li><a href="#"><i data-feather="youtube"></i></a></li>
                             </ul>
                         </div>
                     </div>
