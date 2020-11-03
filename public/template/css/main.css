@@ -1747,13 +1747,13 @@ a:focus {
   text-align: right;
 }
 
-.breadcrumb-form form {
+.breadcrumb-form .div {
   max-width: 350px;
   position: relative;
   margin-left: auto;
 }
 
-.breadcrumb-form form input {
+.breadcrumb-form .div input {
   width: 100%;
   border: 0;
   border-radius: 0;
@@ -1767,15 +1767,15 @@ a:focus {
   transition: all .3s ease;
 }
 
-.breadcrumb-form form input:focus {
+.breadcrumb-form .div input:focus {
   border-color: #246df8;
 }
 
-.breadcrumb-form form input:focus + button {
+.breadcrumb-form .div input:focus + button {
   color: #246df8;
 }
 
-.breadcrumb-form form button {
+.breadcrumb-form .div button {
   background: transparent;
   position: absolute;
   top: 10px;
@@ -1791,7 +1791,7 @@ a:focus {
   cursor: pointer;
 }
 
-.breadcrumb-form form button:hover {
+.breadcrumb-form .div button:hover {
   color: #246df8;
 }
 

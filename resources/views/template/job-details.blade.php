@@ -30,13 +30,13 @@
                         </div>
                         <div class="container">
                             <div style="width: 70%;display: flex;flex-direction:row;">
-                                <textarea style="width: 90%;height: 10vh;" name="comment"
+                                <textarea style="width: 90%;height: 7vh;" name="comment"
                                           class="form-control"></textarea>
                                 @auth()
-                                    <button class="btn btn-lg btn-success send">Gonder</button>
+                                    <button class="btn btn-lg btn-success send">Göndər</button>
                                 @endauth
                                 @guest()
-                                    <button class="btn btn-lg btn-success deactive">Gonder</button>
+                                    <button class="btn btn-lg btn-success deactive">Göndər</button>
                                 @endguest
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                     },
                     success: function (response) {
                         if (response.status === 'success') {
-                            $('input[name=comment]').val("");
+                            $('textarea[name=comment]').val(" ");
                         }
                     }
                 })

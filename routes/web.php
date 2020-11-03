@@ -18,7 +18,7 @@ Route::get('/index','IndexController@index')->name('site.index');
 Route::get('/complaints','ComplaintController@index')->name('site.complaints');
 Route::get('/contact', 'ContactController@index')->name('site.contact');
 Route::get('/about', 'IndexController@about')->name('site.about');
-Route::get('/how-it-works', 'ContactController@howItWork')->name('site.how.work');
+//Route::get('/how-it-works', 'ContactController@howItWork')->name('site.how.work');
 Route::get('/write/complaint', 'IndexController@write')->name('write.complaint')->middleware('auth');
 
 

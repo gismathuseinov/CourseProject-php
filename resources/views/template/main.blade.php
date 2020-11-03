@@ -59,6 +59,7 @@
                     <div class="header-top-toggler">
                         <div class="header-top-toggler-button"></div>
                     </div>
+                    @auth()
                     <div class="top-nav">
                         <div class="dropdown header-top-account">
                             <a href="" style="font-size: 20px;" class="account-button">Hesab</a>
@@ -82,6 +83,7 @@
                             </div>
                         </div>
                     </div>
+                    @endauth
                 </div>
                 <nav class="navbar navbar-expand-lg cp-nav-2">
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -109,20 +111,6 @@
     </div>
 </header>
 
-<div class="alice-bg padding-top-70 padding-bottom-70">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="breadcrumb-form">
-                    <form action="#">
-                        <input type="text" placeholder="Enter Keywords">
-                        <button><i data-feather="search"></i></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 @yield('main')
 
@@ -132,7 +120,7 @@
             <div class="row">
                 <div class="col-lg-5 col-sm-6">
                     <div class="footer-widget widget-about">
-                        <h4>About Us</h4>
+                        <h4>Haqqımızda</h4>
                         <div class="widget-inner">
                             <p class="description">Bu sayt Azərbaycanda müştəri, istehlakçı məmnuniyyəti və şikayətləri
                                 əsasında ölkədə demək olar ki, bütün sahələr üzrə fəaliyyət göstərən şirkət və
@@ -147,10 +135,10 @@
                         <h4>İnformasiya</h4>
                         <div class="widget-inner">
                             <ul>
-                                <li><a href="{{ route('site.about') }}">Haqqımızda</a></li>
-                                <li><a href="{{ route('site.contact') }}">Əlaqə</a></li>
-                                <li><a href="{{ route('login') }}">Daxil ol/Qeydiyyat</a></li>
-                                <li><a href="{{ route('site.complaints') }}">Şikayətlər</a></li>
+                                <li><a style="font-size: 15px" href="{{ route('site.about') }}">Haqqımızda</a></li>
+                                <li><a style="font-size: 15px" href="{{ route('site.contact') }}">Əlaqə</a></li>
+                                <li><a style="font-size: 15px" href="{{ route('login') }}">Daxil ol/Qeydiyyat</a></li>
+                                <li><a style="font-size: 15px" href="{{ route('site.complaints') }}">Şikayətlər</a></li>
                             </ul>
                         </div>
                     </div>

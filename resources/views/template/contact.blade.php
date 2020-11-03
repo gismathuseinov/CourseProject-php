@@ -2,6 +2,11 @@
 @section('main')
     <!-- Breadcrumb End -->
 
+    <div class="alice-bg padding-top-70 padding-bottom-70">
+
+    </div>
+
+
     <div class="alice-bg section-padding-bottom">
       <div class="container">
         <div class="row">
@@ -10,17 +15,16 @@
               <div class="row">
                 <div class="col-lg-4">
                   <div class="contact-address">
-                    <h4>Contact Info</h4>
+                    <h2>Əlaqə</h2>
                     <ul>
-                      <li><i data-feather="map-pin"></i>International Noel Nawab Street Los Alamitos CA 90720, USA</li>
-                      <li><i data-feather="mail"></i>supportjob@gmail.com example@yourmail.com</li>
-                      <li><i data-feather="phone-call"></i>+99 06 1234 566 88</li>
+                      <li style="font-size: 15px!important;"><i  data-feather="map-pin"></i>Bakı,Rəşid Behbudov küçəsi</li>
+                      <li style="font-size: 15px!important;"><i  data-feather="mail"></i>sikayetvar@gmail.com</li>
+                      <li style="font-size: 15px!important;"><i  data-feather="phone-call"></i>+994 70 571 31 12</li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-lg-7 offset-lg-1">
                   <div class="contact-form">
-                    <h4>Keep In Touch</h4>
                     <form action="#" id="contactForm">
                       <div class="row">
                         <div class="col-sm-6">
@@ -30,16 +34,16 @@
                         </div>
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <input type="text" class="form-control" name="message_title" placeholder="Message title">
+                            <input type="text" class="form-control" name="message_title" placeholder="Mesaj başlığı">
                           </div>
                         </div>
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <textarea class="form-control" name="message_body" placeholder="Message"></textarea>
+                            <textarea class="form-control" name="message_body" placeholder="Mesaj"></textarea>
                           </div>
                         </div>
                       </div>
-                      <button class="button send">Submit</button>
+                      <button class="button send">Göndər</button>
                     </form>
                   </div>
                 </div>

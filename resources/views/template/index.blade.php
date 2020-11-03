@@ -27,6 +27,9 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600%7CRoboto:300i,400,500" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <!-- Favicon -->
     <link rel="icon" href="{{asset('template/images/favicon.png')}}">
@@ -57,13 +60,26 @@
                 <li class="menu-item"><a href="{{route('site.about')}}">Haqqımızda</a></li>
                 <li class="menu-item"><a href="{{ route('site.complaints') }}">Şikayətlər</a></li>
                 <li class="menu-item"><a href="{{ route('site.contact') }}">Əlaqə</a></li>
+                @auth()
+                    @if(auth()->id()!==1)
+                        <li class="menu-item"><a href="{{route('user.dashboard')}}">İstifadəçi Paneli</a></li>
+                    @endif
+                    @if(auth()->id()===1)
+                            <li class="menu-item dropdown">
+                                <a title="" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Admin</a>
+                                <ul  class="dropdown-menu">
+                                    <li class="menu-item"><a href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
+                                    <li class="menu-item"><a href="{{ route('logout') }}">Çıxış</a></li>
+                                </ul>
+                            </li>
+                    @endif
+                @endauth
                 @guest()
                     <ul class="navbar-nav ml-auto account-nav">
                         <li class="menu-item"><a href="{{route('login')}}">Giriş</a></li>
                     </ul>
                 @endguest
-                <li class="menu-item post-job"><a title="Title" href="{{ route('write.complaint') }}"><i
-                            class="fas fa-plus"></i>Şikayət Yaz</a></li>
+                <li class="menu-item post-job"><a title="Title" href="{{ route('write.complaint') }}"><i class="fas fa-plus"></i>Şikayət Yaz</a></li>
             </ul>
         </div>
     </nav>
@@ -95,11 +111,9 @@
         <div class="row">
             <div class="col">
                 <div class="searchAndFilter-block">
-                    <div class="searchAndFilter">
-                        <form action="#" class="search-form" style="display: flex;justify-content: center;">
-                            <input type="text" placeholder="Axtarış üçün ">
-                            <button class="button primary-bg"><i class="fas fa-search"></i>axtar</button>
-                        </form>
+                    <div class="searchAndFilter" style="display: flex;justify-content: center;">
+                            <input type="text" name="search" placeholder="Axtarış Edin ">
+                            <button class="button primary-bg search"><i class="fas fa-search"></i>Axtar</button>
                     </div>
                 </div>
             </div>
@@ -123,7 +137,7 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="recent" role="tabpanel"
                          aria-labelledby="recent-tab">
-                        <div class="row">
+                        <div class="row searchPanel">
                             @if(isset($complaints))
                                 @foreach($complaints as $key => $complaint)
                                     <div class="col-lg-10" style="margin-left: 8%!important;">
@@ -174,7 +188,7 @@
 
 <!-- Top post -->
 <div class="section-padding-top padding-bottom-90">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row" style="margin-top: -8%!important;">
             <div class="col">
                 <div class="section-header">
@@ -183,37 +197,21 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-md-12">
                 <div class="row col-md-12">
-                    <div class="company-wrap col-md-3">
-                        <div class="body">
-                            <h4><a>firma</a></h4>
-                            <span>User</span>
-                            <a href="#" class="button">go to post</a>
-                        </div>
-                    </div>
-                    <div class="company-wrap col-md-3">
-                        <div class="body">
-                            <h4><a>firma</a></h4>
-                            <span>User</span>
-                            <a href="#" class="button">go to post</a>
-                        </div>
-                    </div>
-                    <div class="company-wrap col-md-3">
-                        <div class="body">
-                            <h4><a>firma</a></h4>
-                            <span>User</span>
-                            <a href="#" class="button">go to post</a>
-                        </div>
-                    </div>
-                    <div class="company-wrap col-md-3">
-                        <div class="body">
-                            <h4><a>firma</a></h4>
-                            <span>User</span>
-                            <a href="#" class="button">go to post</a>
-                        </div>
-                    </div>
-
+                    @if(isset($result))
+                        @foreach($result as $key=>$topPost)
+                            <div class="company-wrap col-md-3">
+                                <div class="body">
+                                    <h4><a>{{{ Illuminate\Support\Str::limit($topPost->company_name,20) }}}</a>
+                                    </h4>
+                                    <span>{{$topPost->user->name}}</span>
+                                    <a href="{{ route("post.view", ['id' => $topPost->id]) }}" class="button"
+                                       style="border:2px solid grey">Keçid et</a>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -404,9 +402,81 @@
 </footer>
 <!-- Footer End -->
 
+<script>
+    $('.search').click(function () {
+        let data = $('input[name=search]').val();
+        $.ajax({
+            type: "POST",
+            url: "{{ route('search') }}",
+            data: {
+                'data': data,
+                "_token": "{{ csrf_token() }}",
+            },
+            success: function (response) {
+                if(response.message==='success') {
+                    $('input[name=search]').val(' ');
+                    $('.searchPanel').html('');
+                    $('.pagination').remove()
+                    response.results.forEach(function (result) {
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                        function time(){
+                            let time =new Date(Date.parse(result.created_at));
+                            let month=[];
+                            month[0]="Yanvar";
+                            month[1]="Fevral";
+                            month[2]="Mart";
+                            month[3]="Aprel";
+                            month[4]="May";
+                            month[5]="Iyun";
+                            month[6]="Iyul";
+                            month[7]="Avqust";
+                            month[8]="Sentyabr";
+                            month[9]="Oktyabr";
+                            month[10]="Noyabr";
+                            month[11]="Dekabr";
+                            var hours = time.getHours();
+                            var minutes = time.getMinutes();
+                            minutes = minutes < 10 ? '0'+minutes : minutes;
+
+                            return time.getDate()+" "+month[time.getMonth()]+" "+hours+":"+minutes;
+                        }
+
+
+                        $('.searchPanel').append(
+                            `
+                                                                <div class="col-lg-10" style="margin-left: 8%!important;">
+                                        <div class="job-list half-grid">
+                                            <div class="body">
+                                                <div class="content">
+                                                    <h4><a>${result.complaint_title}</a></h4>
+                                                    <span>${result.complaint_body.substring(0,170)}</span>
+                                                    <div class="info">
+                                                        <span class="company"><a><i data-feather="user"></i>${result.user.name}</a></span>
+                                                        <span class="job-type temporary"><a><i
+                                                                    data-feather="clock"></i>{{time()}}</a></span>
+                                                    </div>
+                                                </div>
+                                                <div class="more1">
+                                                    <div class="buttons mt-5">
+                                                        <a href="{{ route("post.view", ['id' => $complaint->id ]) }}"
+                                                           class="button btn btn-lg btn-success">Keçid et</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                            `
+                        )
+                    })
+                }
+            }
+        })
+    });
+</script>
+
+
 <script src="{{asset('template/assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('template/assets/js/popper.min.js')}}"></script>
 <script src="{{asset('template/assets/js/bootstrap.min.js')}}"></script>
