@@ -27,7 +27,12 @@ class IndexController extends Controller
         foreach ($topPosts as $key => $topPost) {
             $result[] = Complaint::find($topPost);
         }
-        return view('template.index', compact(['complaints', 'userCount', 'postCount', 'result']));
+        if ($result[0]!==null && $result[1]!==null) {
+            return view('template.index', compact(['complaints', 'userCount', 'postCount', 'result']));
+        }
+        else{
+            return view('template.index', compact(['complaints', 'userCount', 'postCount']));
+        }
     }
 
     public function about()

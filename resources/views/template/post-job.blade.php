@@ -6,7 +6,7 @@
           <div class="col">
             <div class="post-container">
               <div class="post-content-wrapper">
-                <form action="#" class="job-post-form">
+                <div action="#" class="job-post-form">
                   <div class="basic-info-input">
                     <h4><i data-feather="plus-circle"></i>Post A Job</h4>
                     <div id="company-name" class="form-group row">
@@ -35,7 +35,7 @@
                       </div>
                     </div>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>

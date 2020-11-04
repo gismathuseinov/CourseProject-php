@@ -24,9 +24,12 @@
                   <h4 class="title">Son Paylaşılanlar</h4>
                   <div class="activity-list">
                     <i class="fas fa-bolt"></i>
-                    <div class="content">
+                         <div class="content">
+                    @if (isset($recentPost))
                       <a style="font-size: 20px;display: block" href="{{route('post.view',['id'=>$recentPost->id])}}">{{ $recentPost->company_name }}</a>
                       <span class="time">{{date('D-h:i', strtotime($recentPost->created_at))}}</span>
+                    @endif
+                   
                     </div>
                   </div>
                 </div>

@@ -24,6 +24,8 @@
     <!-- Custom Css -->
     <link rel="stylesheet" type="text/css" href="{{asset('template/css/main.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('template/css/comment.css')}}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600%7CRoboto:300i,400,500" rel="stylesheet">
@@ -92,7 +94,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="banner-content">
+                <div class="banner-content" data-aos="fade-right" data-aos-duration="3000">
+
                     <h1 style="font-family: 'Noto Sans TC', sans-serif;">Şikayətvar.com'a</h1>
                     <p style="font-size: 25px;margin-left: 15px;font-family: 'Noto Sans TC', sans-serif;"> xoş
                         gəlmisiniz</p>
@@ -140,11 +143,11 @@
                         <div class="row searchPanel">
                             @if(isset($complaints))
                                 @foreach($complaints as $key => $complaint)
-                                    <div class="col-lg-10" style="margin-left: 8%!important;">
+                                    <div class="col-lg-10" style="margin-left: 8%!important;" data-aos="fade-up" data-aos-duration="2000">
                                         <div class="job-list half-grid">
                                             <div class="body">
                                                 <div class="content">
-                                                    <h4><a>{{$complaint->complaint_title}}</a></h4>
+                                                    <h4><a>{{$complaint->company_name}}</a></h4>
                                                     <span>{{Illuminate\Support\Str::limit($complaint->complaint_body,80)}}</span>
                                                     <div class="info">
                                                         <span class="company"><a><i data-feather="user"></i>{{ $complaint->user->name }}</a></span>
@@ -171,9 +174,9 @@
                         <nav class="navigation pagination">
                             <div class="nav-links">
                                 <br><br>
-                                <button href="{{ route('site.complaints') }}" class="btn btn-success"
+                                <button class="btn btn-success"
                                         data-bs-hover-animate="pulse"
-                                        style="width: 150px!important;height: 60px;font-size:15px;">Bütün şikayətlər
+                                        style="width: 150px!important;height: 60px;font-size:15px;"><a style="color:white" href="{{ route('site.complaints') }}">Bütün şikayətlər</a>
                                 </button>
                             </div>
                         </nav>
@@ -201,7 +204,7 @@
                 <div class="row col-md-12">
                     @if(isset($result))
                         @foreach($result as $key=>$topPost)
-                            <div class="company-wrap col-md-3">
+                            <div class="company-wrap col-md-3" data-aos="zoom-in-up" data-aos-duration="1500">
                                 <div class="body">
                                     <h4><a>{{{ Illuminate\Support\Str::limit($topPost->company_name,20) }}}</a>
                                     </h4>
@@ -227,7 +230,7 @@
                     <div class="fact-icon">
                         <i data-feather="user" style="width: 35px!important;height: 35px!important;"></i>
                     </div>
-                    <p class="fact-number"><span class="count" data-form="0" data-to="{{$userCount}}24"></span>+</p>
+                    <p class="fact-number"><span class="count" data-form="0" data-to="{{$userCount}}2"></span>+</p>
                     <p class="fact-name" style="font-size: 25px;">İstifadəçilər</p>
                 </div>
             </div>
@@ -247,7 +250,7 @@
                     <div class="fact-icon">
                         <i data-feather="file-text" style="width: 35px!important;height: 35px!important;"></i>
                     </div>
-                    <p class="fact-number"><span class="count" data-form="0" data-to="{{$postCount}}15"></span>+</p>
+                    <p class="fact-number"><span class="count" data-form="0" data-to="{{$postCount}}1"></span>+</p>
                     <p class="fact-name" style="font-size: 25px;">Şikayətlər</p>
                 </div>
             </div>
@@ -261,7 +264,7 @@
         <h4 style="display: flex;justify-content: center;padding-bottom: 86px!important;">Şikayət Prosesi necə baş
             verir?</h4>
         <div class="row fact-items">
-            <div class="col-md-3 col-sm-3">
+            <div class="col-md-3 col-sm-3" data-aos="fade-right" data-aos-duration="1000">
                 <div class="fact">
                     <div class="fact-icon">
                         <img style="width: 240px;height: 240px" src="{{asset('template/images/custom/how-work-1.svg')}}"
@@ -270,7 +273,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3">
+            <div class="col-md-3 col-sm-3" data-aos="fade-up" data-aos-duration="1500">
                 <div class="fact">
                     <div class="fact-icon">
                         <img src="{{asset('template/images/custom/how-work-2.svg')}}" alt="">
@@ -278,7 +281,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3">
+            <div class="col-md-3 col-sm-3" data-aos="fade-up" data-aos-duration="2000">
                 <div class="fact">
                     <div class="fact-icon">
                         <img src="{{asset('template/images/custom/how-work-3.svg')}}" alt="">
@@ -286,7 +289,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3">
+            <div class="col-md-3 col-sm-3" data-aos="fade-left" data-aos-duration="2500">
                 <div class="fact">
                     <div class="fact-icon">
                         <img src="{{asset('template/images/custom/how-work-4.svg')}}" alt="">
@@ -302,7 +305,7 @@
     <div class="container">
         <div class="row" style="display: flex;justify-content: center;">
             <div class="col-lg-8">
-                <div class="call-to-action-box candidate-box shadow-lg">
+                <div class="call-to-action-box candidate-box shadow-lg" data-aos="zoom-in" data-aos-duration="2000">
                     <div class="icon">
                         <img src="{{asset('template/images/register-box/1.png')}}" alt="">
                     </div>
@@ -335,7 +338,7 @@
             <div class="row">
                 <div class="col-lg-5 col-sm-6">
                     <div class="footer-widget widget-about">
-                        <h4>About Us</h4>
+                        <h4>Haqqımızda</h4>
                         <div class="widget-inner">
                             <p class="description">Bu sayt Azərbaycanda müştəri, istehlakçı məmnuniyyəti və şikayətləri
                                 əsasında ölkədə demək olar ki, bütün sahələr üzrə fəaliyyət göstərən şirkət və
@@ -385,7 +388,7 @@
 
                             </div>
                             <div class="col-xl-4 col-lg-4 order-lg-1">
-                                <p class="copyright-text">Copyright <a href="#">Oficiona</a> 2020, All right reserved
+                                <p class="copyright-text">Copyright <a href="{{ route('site.index') }}">Şikayetvar.com</a> 2020, All right reserved
                                 </p>
                             </div>
                             <div class="col-xl-4 col-lg-3 order-lg-3">
@@ -401,7 +404,7 @@
     </div>
 </footer>
 <!-- Footer End -->
-
+@if(isset($complaint))
 <script>
     $('.search').click(function () {
         let data = $('input[name=search]').val();
@@ -475,7 +478,12 @@
         })
     });
 </script>
+@endif
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 
 <script src="{{asset('template/assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('template/assets/js/popper.min.js')}}"></script>
