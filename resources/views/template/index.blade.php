@@ -301,7 +301,7 @@
     </div>
 </div>
 
-<div class="section-padding" style="background-color: whitesmoke">
+<div class="section-padding" style="background-color: whitesmoke;margin-top: -40px;">
     <div class="container">
         <div class="row" style="display: flex;justify-content: center;">
             <div class="col-lg-8">

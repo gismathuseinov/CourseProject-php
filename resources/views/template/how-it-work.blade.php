@@ -9,7 +9,7 @@
                         <div class="how-it-work">
                             <div class="row">
                                 <div class="col-lg-6 order-lg-2">
-                                    <div class="working-process-thumb">
+                                    <div class="working-process-thumb" data-aos="fade-up">
                                         <img src="{{ asset('template/images/custom/first.png') }}" class="img-fluid"
                                              alt="">
                                         <img src="{{ asset('template/images/custom/second.png') }}" class="img-fluid"
@@ -17,14 +17,14 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 order-lg-1">
-                                    <div class="working-process">
+                                    <div class="working-process" data-aos="fade-up" data-aos-duration="1500">
                                         <h3><span>#01.</span>Haqqımzda</h3>
                                         <p>Bu sayt Azərbaycanda müştəri, istehlakçı məmnuniyyəti və şikayətləri əsasında
                                             ölkədə demək olar ki, bütün sahələr üzrə fəaliyyət göstərən şirkət və
                                             markaların reytinqini təyin edə bilmək məqsədilə yaradılmış internet
                                             platformasıdır.</p>
                                     </div>
-                                    <div class="working-process">
+                                    <div class="working-process" data-aos="fade-up" data-aos-duration="2500">
                                         <h3><span>#02.</span>Bizlər</h3>
                                         <p>
                                             Şikayətlər, şikayətləri həll edən və müştərilərinə dəyər verən markaların
@@ -38,7 +38,7 @@
                                         </p>
                                         {{--                      <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over you need to be sure there isn't anything embarrassing.</p>--}}
                                     </div>
-                                    <div class="working-process">
+                                    <div class="working-process" data-aos="fade-up" data-aos-duration="3500">
                                         <h3><span>#03.</span>Missiyamız nədən ibarətdir?</h3>
                                         <p> İstehlakçıların gündəlik iş və həyatlarında rastlaşdıqları problemlərin həll
                                             olunmasında birgə çıxış yolu tapmaq, şikayətlərin və narazılığın birbaşa
@@ -52,9 +52,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Testimonial -->
-
-                        <!-- Testimonial End -->
                     </div>
                 </div>
             </div>

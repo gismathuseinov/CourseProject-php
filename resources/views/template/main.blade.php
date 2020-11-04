@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('template/css/main.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('template/css/comment.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('template/dashboard/css/dashboard.css')}}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -185,7 +186,10 @@
         </div>
     </div>
 </footer>
-
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 <script src="{{asset('template/assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('template/assets/js/popper.min.js')}}"></script>
 <script src="{{asset('template/assets/js/bootstrap.min.js')}}"></script>
