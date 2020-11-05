@@ -27,7 +27,7 @@ class AdminController extends Controller
 
     public function issue()
     {
-        $comments = Complaint::where('is_letted', 0)->paginate(6);
+        $comments = Complaint::orderBy('id','desc')->where('is_letted', 0)->get();
 
         return view('admin-panel.nice-html.ltr.issue', compact('comments'));
     }

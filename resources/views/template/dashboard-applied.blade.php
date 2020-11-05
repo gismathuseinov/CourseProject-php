@@ -8,7 +8,7 @@
                     <div class="dashboard-container">
                         <div class="dashboard-content-wrapper">
                             <div class="dashboard-applied">
-                                <h4 class="apply-title">06 Job Applied</h4>
+                                <h4 class="apply-title"></h4>
                                 <div class="dashboard-apply-area">
                                     @if(isset($userPosts))
                                         @foreach($userPosts as $userPost)
@@ -23,17 +23,17 @@
                                                         </h4>
                                                         <h4>
                                                            @if($userPost->is_active===0 || $userPost->is_letted===0)
-                                                            <a href="#">{{ $userPost->company_name }}</a>
+                                                            <a href="#" onclick="warning()">{{ $userPost->company_name }}</a>
                                                             @endif
                                     
                                                         </h4>
                                                         <div class="info">
-                                                            <span class="company">{{Illuminate\Support\Str::limit($userPost->complaint_body,1000)}}</span>
+                                                            <span class="company">{{Illuminate\Support\Str::limit($userPost->complaint_body,1000)}}</span><span class="job-type temporary"><a><i
+                                                                    data-feather="clock"></i>{{date('D-h:i', strtotime($userPost->created_at))}}</a></span>
                                                         </div>
                                                     </div>
                                                     <div class="more">
-                                                        <a href="javascript::warning()" class="bookmark-remove"><i class="fas fa-times"></i></a>
-                                                        <p class="deadline">Deadline: Oct 31, 2018</p>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>

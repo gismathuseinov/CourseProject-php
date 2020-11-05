@@ -230,7 +230,7 @@
                     <div class="fact-icon">
                         <i data-feather="user" style="width: 35px!important;height: 35px!important;"></i>
                     </div>
-                    <p class="fact-number"><span class="count" data-form="0" data-to="{{$userCount}}2"></span>+</p>
+                    <p class="fact-number"><span class="count" data-form="0" data-to="{{$userCount}}"></span>+</p>
                     <p class="fact-name" style="font-size: 25px;">İstifadəçilər</p>
                 </div>
             </div>
@@ -240,7 +240,7 @@
                     <div class="fact-icon">
                         <i data-feather="eye" style="width: 35px!important;height: 35px!important;"></i>
                     </div>
-                    <p class="fact-number"><span class="count" data-form="0" data-to="758"></span>+</p>
+                    <p class="fact-number"><span class="count" data-form="0" data-to="25"></span>+</p>
                     <p class="fact-name" style="font-size: 25px;">Son 30 gündə ziyarətçi</p>
                 </div>
             </div>
@@ -250,7 +250,7 @@
                     <div class="fact-icon">
                         <i data-feather="file-text" style="width: 35px!important;height: 35px!important;"></i>
                     </div>
-                    <p class="fact-number"><span class="count" data-form="0" data-to="{{$postCount}}1"></span>+</p>
+                    <p class="fact-number"><span class="count" data-form="0" data-to="{{$postCount}}"></span>+</p>
                     <p class="fact-name" style="font-size: 25px;">Şikayətlər</p>
                 </div>
             </div>

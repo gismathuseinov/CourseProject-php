@@ -82,7 +82,7 @@
             </div>
         </div>
         <div class="pagination">
-            {{$comments->links()}}
+            {{-- {{$comments->links()}} --}}
         </div>
         <script>
             $('tbody').on('click', '.permission', function () {
