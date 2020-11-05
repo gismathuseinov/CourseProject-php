@@ -16,14 +16,23 @@
                                                 <div class="body">
                                                     <div class="content">
                                                         <h4>
+                                                           @if($userPost->is_active===1 && $userPost->is_letted===1)
                                                             <a href="{{ route('post.view',['id' => $userPost->id]) }}">{{ $userPost->company_name }}</a>
+                                                            @endif
+                                    
+                                                        </h4>
+                                                        <h4>
+                                                           @if($userPost->is_active===0 || $userPost->is_letted===0)
+                                                            <a href="#">{{ $userPost->company_name }}</a>
+                                                            @endif
+                                    
                                                         </h4>
                                                         <div class="info">
-                                                            <span class="company">{{Illuminate\Support\Str::limit($userPost->complaint_body,300)}}</span>
+                                                            <span class="company">{{Illuminate\Support\Str::limit($userPost->complaint_body,1000)}}</span>
                                                         </div>
                                                     </div>
                                                     <div class="more">
-                                                        <a href="#" class="bookmark-remove"><i class="fas fa-times"></i></a>
+                                                        <a href="javascript::warning()" class="bookmark-remove"><i class="fas fa-times"></i></a>
                                                         <p class="deadline">Deadline: Oct 31, 2018</p>
                                                     </div>
                                                 </div>
@@ -57,6 +66,10 @@
         </div>
     </div>
 
-
+<script>
+    function warning(){
+        alert('Şikayət aktiv deyil :)')
+    }
+</script>
 
 @endsection

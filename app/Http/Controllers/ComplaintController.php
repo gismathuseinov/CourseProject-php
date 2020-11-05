@@ -19,7 +19,7 @@ class ComplaintController extends Controller
 
     public function index()
     {
-        $complaints = \App\Complaint::orderBy('id','desc')->get();
+        $complaints = \App\Complaint::where('is_active',1)->where('is_letted',1)->orderBy('id','desc')->paginate(15);
         return view('template.job-listing',compact('complaints'));
     }
 

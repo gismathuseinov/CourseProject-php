@@ -60,25 +60,25 @@ class Handler extends ExceptionHandler
      */
    public function render($request, Throwable $exception)
     {
-//        if (env("APP_DEBUG")) {
-//            return parent::render($request, $exception);
-//        }
-//        else {
-//
-//            //404
-//            if ($exception instanceof NotFoundHttpException ||
-//                $exception instanceof ModelNotFoundException) {
-//                return response("not found", 404);
-//            }
-//
-//            //500
-//            $e = new HttpException(500);
-//            if ($this->isHttpException($e)) {
-//                return response("server error", 500);
-//            }
-//
-//            return response("Something went wrong");
-//        }
+       if (env("APP_DEBUG")) {
+           return parent::render($request, $exception);
+       }
+       else {
+
+           //404
+           if ($exception instanceof NotFoundHttpException ||
+               $exception instanceof ModelNotFoundException) {
+               return response("not found", 404);
+           }
+
+           //500
+           $e = new HttpException(500);
+           if ($this->isHttpException($e)) {
+               return response("server error", 500);
+           }
+
+           return response("Something went wrong");
+       }
        return parent::render($request, $exception);
 
     }

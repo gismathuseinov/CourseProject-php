@@ -47,6 +47,9 @@
                                     @endforeach
                                 @endif
                             </div>
+                            <div class="pagination pagination-lg" style="margin-left: 38%;margin-top: 5%;">
+                                {{ $complaints->links()}}
+                            </div>
                         </div>
 
                     </div>

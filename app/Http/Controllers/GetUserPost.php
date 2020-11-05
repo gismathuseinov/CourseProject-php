@@ -21,7 +21,7 @@ class GetUserPost extends Controller
         $user = User::select('name', 'email')->where('id', Auth::id())->get();
         $userPostCount = Complaint::where('user_id', Auth::id())->get()->count();
         $userCommentCount = PostComment::where('user_id', Auth::id())->get()->count();
-        $recentPost = Complaint::orderBy('id','desc')->first();
+        $recentPost = Complaint::where('is_letted',1)->where('is_active',1)->orderBy('id','desc')->first();
 
         return view('template.dashboard',compact(['user','userPostCount','userPostCount','recentPost']));
     }

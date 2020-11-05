@@ -264,7 +264,7 @@
         <h4 style="display: flex;justify-content: center;padding-bottom: 86px!important;">Şikayət Prosesi necə baş
             verir?</h4>
         <div class="row fact-items">
-            <div class="col-md-3 col-sm-3" data-aos="fade-right" data-aos-duration="1000">
+            <div class="col-md-3 col-sm-3" data-aos="fade-up" data-aos-duration="1000">
                 <div class="fact">
                     <div class="fact-icon">
                         <img style="width: 240px;height: 240px" src="{{asset('template/images/custom/how-work-1.svg')}}"
@@ -273,7 +273,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3" data-aos="fade-up" data-aos-duration="1500">
+            <div class="col-md-3 col-sm-3" data-aos="fade-up" data-aos-duration="2000">
                 <div class="fact">
                     <div class="fact-icon">
                         <img src="{{asset('template/images/custom/how-work-2.svg')}}" alt="">
@@ -281,7 +281,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3" data-aos="fade-up" data-aos-duration="2000">
+            <div class="col-md-3 col-sm-3" data-aos="fade-up" data-aos-duration="2500">
                 <div class="fact">
                     <div class="fact-icon">
                         <img src="{{asset('template/images/custom/how-work-3.svg')}}" alt="">
@@ -289,7 +289,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3" data-aos="fade-left" data-aos-duration="2500">
+            <div class="col-md-3 col-sm-3" data-aos="fade-up" data-aos-duration="3000">
                 <div class="fact">
                     <div class="fact-icon">
                         <img src="{{asset('template/images/custom/how-work-4.svg')}}" alt="">
@@ -473,6 +473,22 @@
                             `
                         )
                     })
+                }
+                if(response.message==='failed'){
+                    $('input[name=search]').val(' ');
+                    $('.searchPanel').html('');
+                    $('#myTab').html('');
+                    $('.pagination').remove()
+                    $('#myTab').append(`<div class="col-lg-10" style="margin-left: 8%!important;">
+                                        <div class="job-list half-grid">
+                                            <div class="body">
+                                                <div class="content">
+                                                    <h4><a>Nəticə tapılmadı</a></h4>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>`)
                 }
             }
         })
