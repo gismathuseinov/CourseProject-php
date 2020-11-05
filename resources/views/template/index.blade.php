@@ -316,7 +316,7 @@
                             <a href="{{ route('admin.dashboard') }}">Qeydiyyatdan keçin<i
                                     @endif
                                     class="fas fa-arrow-right"></i></a>
-                            @if(\Illuminate\Support\Facades\Auth::id()!==1)
+                            @if(auth()->id()>1)
                                 <a href="{{ route('user.dashboard') }}">Qeydiyyatdan keçin<i
                                         class="fas fa-arrow-right"></i></a>
                             @endif
@@ -452,11 +452,11 @@
                                             <div class="body">
                                                 <div class="content">
                                                     <h4><a>${result.complaint_title}</a></h4>
-                                                    <span>${result.complaint_body.substring(0,170)}</span>
+                                                    <span>${result.complaint_body.substring(0,100)}</span>
                                                     <div class="info">
                                                         <span class="company"><a><i data-feather="user"></i>${result.user.name}</a></span>
                                                         <span class="job-type temporary"><a><i
-                                                                    data-feather="clock"></i>{{time()}}</a></span>
+                                                                    data-feather="clock"></i>${time()}</a></span>
                                                     </div>
                                                 </div>
                                                 <div class="more1">

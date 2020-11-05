@@ -15,7 +15,8 @@ class SearchController extends Controller
             ->orWhere('complaint_body', 'like', "%{$data}%")
             ->orWhere('company_name', 'like', "%{$data}%")
             ->with('user')->get();
-            if ($results === null) {
+            if ($results !== null ) {
+
         return response()->json(['message' => 'success', 'results' => $results]);
             	
             }else{
