@@ -33,10 +33,10 @@
                                 <textarea style="width: 90%;height: 7vh;" name="comment"
                                           class="form-control"></textarea>
                                 @auth()
-                                    <button class="btn btn-lg btn-success send">Göndər</button>
+                                    <button class="btn btn-lg btn-info send">Göndər</button>
                                 @endauth
                                 @guest()
-                                    <button class="btn btn-lg btn-success deactive">Göndər</button>
+                                    <button class="btn btn-lg btn-info deactive">Göndər</button>
                                 @endguest
                             </div>
                         </div>

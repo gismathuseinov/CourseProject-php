@@ -160,7 +160,7 @@
                                                 <div class="more1">
                                                     <div class="buttons mt-5">
                                                         <a href="{{ route("post.view", ['id' => $complaint->id ]) }}"
-                                                           class="button btn btn-lg btn-success">Keçid et</a>
+                                                           class="button btn btn-lg btn-info">Keçid et</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -174,7 +174,7 @@
                         <nav class="navigation pagination">
                             <div class="nav-links">
                                 <br><br>
-                                <button class="btn btn-success"
+                                <button class="btn btn-lg btn-info"
                                         data-bs-hover-animate="pulse"
                                         style="width: 150px!important;height: 60px;font-size:15px;"><a style="color:white" href="{{ route('site.complaints') }}">Bütün şikayətlər</a>
                                 </button>

@@ -160,7 +160,7 @@
                     $(this).parents('tr').find('td:eq(1 )').text(company_name);
                     $(this).parents('tr').find('td:eq(2)').text(complaint_title);
                     $(this).parents('tr').find('td:eq(3)').text(complaint_body);
-                    $(this).parents('tr').find('td:eq(6)').html('<button class="btn btn-warning edit"><i class="fa fa-pencil"></i></button>')
+                    $(this).parents('tr').find('td:eq(5)').html('<button class="btn btn-warning save"><i class="fa fa-pencil"></i></button>')
                 })
             });
 
